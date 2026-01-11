@@ -1,0 +1,18 @@
+﻿
+<h2>My Tasks</h2>
+<ul>
+@foreach(var item in ViewBag.Tasks)
+{
+    <li>@item</li>
+}
+</ul>
+
+<form action="/Task/Add" method="post">
+    <label>Task</label>
+    <input type="text" name="task" />
+    <button type="submit">Add Task</button>
+    </form>
+
+<form action="/Task/ClearAll" method="post">
+    <button type="submit">Clear All Tasks</button>
+</form>
