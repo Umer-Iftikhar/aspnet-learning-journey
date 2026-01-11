@@ -5,7 +5,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 ## Progress Tracker
 - [x] Phase 1: HTML Forms + ASP.NET Fundamentals
   - [x] Project 1.1: Simple Calculator ✅
-  - [ ] Project 1.2: Task Collector
+  - [x] Project 1.2: Task Collector ✅
   - [ ] Project 1.3: Contact Form
 - [ ] Phase 2: Razor Syntax + MVC
 - [ ] Phase 3: CSS + Layouts
