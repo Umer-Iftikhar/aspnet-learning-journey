@@ -14,6 +14,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [ ] Phase 6: Authentication + Authorization
 - [ ] Phase 7: Validation + Error Handling
 - [ ] Phase 8: Capstone E-Commerce Project
+- [ ] Phase 9: Production Patterns (MANDATORY)
 
 ## Current Phase
 Phase 1 - Week 1 - Day 3
