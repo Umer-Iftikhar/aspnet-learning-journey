@@ -12,16 +12,17 @@ namespace ContactForm.Controllers
         [HttpPost]
         public IActionResult Submit(ContactSubmission model)
         {
-            //TempData["Submission"] = model;
-            TempData["UserName"] = model.Name;
+            TempData["Name"] = model.Name;
+            TempData["Email"] = model.Email;
+            TempData["Subject"] = model.Subject;
+            TempData["Message"] = model.Message;
+
             return RedirectToAction("ThankYou");
         }
         [HttpGet]
         public IActionResult ThankYou()
         {
-            var name = TempData["UserName"];
-            ViewBag.Name = name;
-            return View(); 
+            return View();  
         }
     }
 }
