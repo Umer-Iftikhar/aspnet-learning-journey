@@ -6,7 +6,7 @@ namespace StudentGradeTracker.Models
     {
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [Range(0, 100)]
         public int Grade { get; set; }
     }
