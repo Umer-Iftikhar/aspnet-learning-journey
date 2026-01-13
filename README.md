@@ -3,11 +3,17 @@
 Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanilla JS.
 
 ## Progress Tracker
-- [x] Phase 1: HTML Forms + ASP.NET Fundamentals
-  - [x] Project 1.1: Simple Calculator ✅
-  - [x] Project 1.2: Task Collector ✅
-  - [x] Project 1.3: Contact Form ✅
-- [ ] Phase 2: Razor Syntax + MVC
+
+### PHASE 1: Raw HTML Forms + ASP.NET Core Fundamentals ✅
+- [x] Project 1.1: Simple Calculator ✅
+- [x] Project 1.2: Task Collector ✅
+- [x] Project 1.3: Contact Form ✅ 
+### PHASE 2: Razor Syntax + Proper MVC (Current)
+- [x] Project 2.1: Student Grade Tracker ✅
+- [ ] Project 2.2: Book Library
+- [ ] Project 2.3: Login System (Memory-based)
+
+### Upcoming Phases
 - [ ] Phase 3: CSS + Layouts
 - [ ] Phase 4: SQL + Entity Framework Core
 - [ ] Phase 5: JavaScript + DOM
@@ -16,5 +22,23 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [ ] Phase 8: Capstone E-Commerce Project
 - [ ] Phase 9: Production Patterns (MANDATORY)
 
+
+## 🧠 Key Lessons Learned
+
+### Phase 1: Fundamentals
+* **The PRG Pattern:** Learned to use "Post-Redirect-Get". Instead of returning a View directly from a POST action (which causes "Confirm Form Resubmission" errors on refresh), I now redirect to a GET action.
+* **Statelessness:** Observed how data in `static` lists disappears when the server restarts, highlighting the need for databases.
+* **Model Binding:** Discovered how ASP.NET Core automatically maps HTML `name` attributes to C# Class properties.
+* **TempData:** Used this to persist small amounts of data across a single redirect.
+
+### Phase 2: Razor & Tag Helpers
+* **Tag Helpers vs Raw HTML:** Tag Helpers (`asp-for`, `asp-action`) provide compile-time safety and auto-generate correct HTML attributes based on C# types.
+* **Strongly-Typed Models:** Using `@model` directive and passing models to views gives IntelliSense and catches errors at compile-time vs runtime.
+* **Data Annotations:** `[Required]`, `[Range]` enable declarative validation on models.
+* **Server-Side Validation:** `ModelState.IsValid` is mandatory for security - client-side validation is only for UX, not security.
+* **LINQ Fundamentals:** Learned `.Max()` with lambda expressions (`s => s.Id`) for finding maximum values in collections.
+* **Nullable Reference Types:** Understanding why `string?` with `[Required]` allows compile-time null-safety while enforcing runtime validation.
+
+
 ## Current Phase
-Phase 2 - Week 2 - Day 1
+Phase 2 - Week 2 - Day 2
