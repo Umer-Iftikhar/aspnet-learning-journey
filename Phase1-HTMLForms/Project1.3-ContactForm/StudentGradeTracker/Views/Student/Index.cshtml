@@ -1,0 +1,26 @@
+﻿@using StudentGradeTracker.Models
+@model List<Student>
+
+<h1>Student Grade Tracker</h1>
+
+<a asp-action="Add" asp-controller="Student">Add New Student</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Grade</td>
+            </tr>
+        }
+    </tbody>
+</table>

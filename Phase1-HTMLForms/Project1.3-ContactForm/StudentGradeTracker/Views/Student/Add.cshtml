@@ -1,0 +1,15 @@
+﻿@using StudentGradeTracker.Models
+@model Student
+
+<h1>Add New Student</h1>
+<form asp-action="Add" asp-controller="Student" method="post">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+
+    <label asp-for="Grade"></label>
+    <input asp-for="Grade" />
+    <span asp-validation-for="Grade"></span>
+
+    <button type="submit">Add Student</button>
+</form>
