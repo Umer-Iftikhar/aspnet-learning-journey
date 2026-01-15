@@ -6,7 +6,7 @@ namespace BookLibrary.Controllers
 {
     public class BooksController : Controller
     {
-        public static List<Book> book = new List<Book>
+        private static List<Book> books = new List<Book>
         {
             new Book { Id = 1, Title = "1984", Author = "George Orwell", Year = 1949, Genre = "Fiction" },
             new Book { Id = 2, Title = "A Brief History of Time", Author = "Stephen Hawking", Year = 1988, Genre = "Science" },
@@ -26,9 +26,40 @@ namespace BookLibrary.Controllers
             new Book {Id = 16, Title = "And Then There Were None", Author = "Agatha Christie", Year = 1939, Genre = "Mystery"},
             new Book {Id = 17, Title = "Onepiece", Author = "Eichiro Oda", Year = 1997, Genre = "Adventure"}
         };
-        public IActionResult Index()
+        public IActionResult Index(string? genre)
+        {
+            var viewModel = new BookListViewModel();
+                
+            if (string.IsNullOrEmpty(genre))
+            {
+                viewModel.Books = books;
+            }
+            else
+            {
+                viewModel.Books = books.Where(b => b.Genre == genre).ToList();
+            }
+            viewModel.Genres = books.Select(b => b.Genre).Distinct().ToList();
+            viewModel.SelectedGenre = genre;
+        
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Add(Book book)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(book);
+            }
+
+            book.Id = books.Any() ? books.Max(b => b.Id) + 1 : 1;
+            books.Add(book);
+            return RedirectToAction("Index");
         }
     }
 }
