@@ -47,6 +47,7 @@ namespace BookLibrary.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+            ViewBag.Genres = books.Select(b => b.Genre).Distinct().ToList();
             return View();
         }
         [HttpPost]
@@ -54,6 +55,7 @@ namespace BookLibrary.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Genres = books.Select(b => b.Genre).Distinct().ToList();
                 return View(book);
             }
 
