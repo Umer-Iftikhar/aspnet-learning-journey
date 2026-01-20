@@ -4,13 +4,13 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ## Progress Tracker
 
-### PHASE 1: Raw HTML Forms + ASP.NET Core Fundamentals ✅
-- [x] Project 1.1: Simple Calculator ✅
-- [x] Project 1.2: Task Collector ✅
-- [x] Project 1.3: Contact Form ✅ 
+### PHASE 1: Raw HTML Forms + ASP.NET Core Fundamentals 
+- [✅] Project 1.1: Simple Calculator 
+- [✅] Project 1.2: Task Collector 
+- [✅] Project 1.3: Contact Form  
 ### PHASE 2: Razor Syntax + Proper MVC (Current)
-- [x] Project 2.1: Student Grade Tracker ✅
-- [ ] Project 2.2: Book Library
+- [✅] Project 2.1: Student Grade Tracker 
+- [✅] Project 2.2: Book Library
 - [ ] Project 2.3: Login System (Memory-based)
 
 ### Upcoming Phases
@@ -38,7 +38,10 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * **Server-Side Validation:** `ModelState.IsValid` is mandatory for security - client-side validation is only for UX, not security.
 * **LINQ Fundamentals:** Learned `.Max()` with lambda expressions (`s => s.Id`) for finding maximum values in collections.
 * **Nullable Reference Types:** Understanding why `string?` with `[Required]` allows compile-time null-safety while enforcing runtime validation.
+* **CRUD operations:**Learned `Edit` and `Delete` features and implemented them.
+* **Partial views:**Created `_partial views` to avoid reuse of code.
+* **Layout:**Used `_layout` in shared views and fixed the `nav` links. 
 
 
 ## Current Phase
-Phase 2 - Week 2 - Day 2
+Phase 2 - Week 2 - Day 4
