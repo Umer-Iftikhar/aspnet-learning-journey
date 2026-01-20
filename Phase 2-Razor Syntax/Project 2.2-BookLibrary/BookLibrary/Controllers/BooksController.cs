@@ -63,5 +63,42 @@ namespace BookLibrary.Controllers
             books.Add(book);
             return RedirectToAction("Index");
         }
+        public IActionResult Edit(int id)
+        {
+            var book = books.FirstOrDefault(b => b.Id == id);
+
+            if (book == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Genres = books.Select(b => b.Genre).Distinct().ToList();
+            return View(book);
+        }
+        [HttpPost]
+        public IActionResult Edit(int id, Book book)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Genres = books.Select(b => b.Genre).Distinct().ToList();
+                return View(book);
+            }
+
+            // Find the EXISTING book in the list
+            var existingBook = books.FirstOrDefault(b => b.Id == id);
+
+            if (existingBook == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // UPDATE its properties (don't change Id!)
+            existingBook.Title = book.Title;
+            existingBook.Author = book.Author;
+            existingBook.Year = book.Year;
+            existingBook.Genre = book.Genre;
+
+            return RedirectToAction("Index");
+        }
     }
 }
