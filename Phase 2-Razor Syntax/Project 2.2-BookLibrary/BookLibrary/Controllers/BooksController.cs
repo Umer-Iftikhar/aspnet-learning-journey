@@ -100,5 +100,32 @@ namespace BookLibrary.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // GET: Show confirmation
+        public IActionResult Delete(int id)
+        {
+            var book = books.FirstOrDefault(b => b.Id == id);
+
+            if (book == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(book);
+        }
+
+        // POST: Actually delete
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var book = books.FirstOrDefault(b => b.Id == id);
+
+            if (book != null)
+            {
+                books.Remove(book);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
