@@ -1,4 +1,9 @@
-﻿@using BookLibrary.ViewModels
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Book List";  // Change per page
+}
+
+@using BookLibrary.ViewModels
 @model BookListViewModel
 @removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -30,16 +35,7 @@
     <tbody>
         @foreach (var book in Model.Books)
         {
-            <tr>
-                <td>@book.Title</td>
-                <td>@(book.Author ?? "Unknown")</td>
-                <td>@(book.Year?.ToString() ?? "Unknown")</td>
-                <td>@book.Genre</td>
-                <td>
-                    <a href="Books/Edit/@book.Id">Edit</a>
-                    <a href="Books/Delete/@book.Id">Delete</a>
-                </td>
-            </tr>
+            <partial name="_BookTableRow" model="book" />
         }
     </tbody>
 </table>
