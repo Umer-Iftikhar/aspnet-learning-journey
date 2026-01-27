@@ -1,0 +1,12 @@
+﻿@model Book
+
+<tr>
+    <td>@Model.Title</td>
+    <td>@(Model.Author ?? "Unknown")</td>
+    <td>@(Model.Year?.ToString() ?? "Unknown")</td>
+    <td>@Model.Genre</td>
+    <td>
+        <a href="/Books/Edit/@Model.Id">Edit</a>
+        <a href="/Books/Delete/@Model.Id">Delete</a>
+    </td>
+</tr>

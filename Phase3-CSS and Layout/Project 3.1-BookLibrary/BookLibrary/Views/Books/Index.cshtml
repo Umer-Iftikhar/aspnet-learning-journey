@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Book List";  
+}
+
+@using BookLibrary.ViewModels
+@model BookListViewModel
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Book Library</h1>
+
+<form method="get" action="/Books/Index">
+    <label>Filter by Genre:</label>
+    <select name="genre" onchange="this.form.submit()">
+        <option value="">All Genres</option>
+    
+        @foreach (var g in Model.Genres)
+        {
+            <option value="@g" @(g == Model.SelectedGenre ? "selected" : "")>@g</option>
+        }
+    </select>
+</form>
+
+<h2>Books</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Genre</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            <partial name="_BookTableRow" model="book" />
+        }
+    </tbody>
+</table>
+
+<br />
+<a href="/Books/Add">Add New Book</a>
