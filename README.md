@@ -14,7 +14,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 2.3: Login System (Memory-based)
 
 ### PHASE 3: CSS + Layouts (Current)
- - [ ] Project 3.1: Style Your Book Library 
+ - [✅] Project 3.1: Style Your Book Library 
  - [ ] Project 3.2: Dashboard with Cards
 ### Upcoming Phases
 - [ ] Phase 4: SQL + Entity Framework Core
@@ -47,6 +47,17 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * **Layout:**Used `_layout` in shared views and fixed the `nav` links. 
 * **Session:**Learnt the use of `HttpContext.Session`.
 
+### Phase 3: CSS + Layouts
+* **Box Model:** Understanding margin (outside), border, padding (inside), and content layers for proper spacing.
+* **Flexbox Basics:** Using `display: flex`, `gap`, and `flex-direction` to arrange elements horizontally or vertically.
+* **Descendant Selectors:** Targeting nested elements like `nav a` (all `<a>` inside `<nav>`) for precise styling without class pollution.
+* **Pseudo-classes:** Using `:hover`, `:nth-child(even)`, `:nth-child(odd)` for interactive and alternating styles.
+* **Pseudo-elements:** Creating decorative elements with `::after` for effects like animated underlines without extra HTML.
+* **CSS Transitions:** Adding smooth animations with `transition` property (e.g., `transition: all 0.25s ease`).
+* **Media Queries:** Using `@media (max-width: 768px)` to apply responsive styles for mobile devices.
+* **Browser DevTools:** Using Inspect (F12) to debug CSS, see applied styles, and understand the HTML structure.
+* **CSS Cascade:** Understanding that styles read top-to-bottom, and later rules override earlier ones with equal specificity.
+
 
 ## Current Phase
-Phase 2 - Week 2 - Day 7
+Phase 2 - Week 3 - Day 3
