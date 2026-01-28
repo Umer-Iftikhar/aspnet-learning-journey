@@ -60,4 +60,4 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 
 ## Current Phase
-Phase 2 - Week 3 - Day 3
+Phase 2 - Week 3 - Day 4
