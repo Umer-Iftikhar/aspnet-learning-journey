@@ -4,20 +4,28 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ## Progress Tracker
 
-### PHASE 1: Raw HTML Forms + ASP.NET Core Fundamentals 
+### PHASE 1: Raw HTML Forms + ASP.NET Core Fundamentals ✅
 - [✅] Project 1.1: Simple Calculator 
 - [✅] Project 1.2: Task Collector 
 - [✅] Project 1.3: Contact Form  
-### PHASE 2: Razor Syntax + Proper MVC 
+
+### PHASE 2: Razor Syntax + Proper MVC ✅
 - [✅] Project 2.1: Student Grade Tracker 
 - [✅] Project 2.2: Book Library
 - [✅] Project 2.3: Login System (Memory-based)
 
-### PHASE 3: CSS + Layouts (Current)
- - [✅] Project 3.1: Style Your Book Library 
- - [ ] Project 3.2: Dashboard with Cards
+### PHASE 3: CSS + Layouts ✅
+- [✅] Project 3.1: Style Your Book Library 
+- [✅] Project 3.2: Dashboard with Cards
+
+### PHASE 4: SQL + Entity Framework Core (Next)
+- [ ] Setup: MySQL + EF Core Tools
+- [ ] LINQ Deep Dive Practice (2 hours)
+- [ ] Project 4.1: Todo App with Database
+- [ ] Project 4.2: Blog Posts
+- [ ] Project 4.3: Product Inventory
+
 ### Upcoming Phases
-- [ ] Phase 4: SQL + Entity Framework Core
 - [ ] Phase 5: JavaScript + DOM
 - [ ] Phase 6: Authentication + Authorization
 - [ ] Phase 7: Validation + Error Handling
@@ -40,12 +48,12 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * **Server-Side Validation:** `ModelState.IsValid` is mandatory for security - client-side validation is only for UX, not security.
 * **LINQ Fundamentals:** Learned `.Max()` with lambda expressions (`s => s.Id`) for finding maximum values in collections.
 * **Nullable Reference Types:** Understanding why `string?` with `[Required]` allows compile-time null-safety while enforcing runtime validation.
-* **ViewModels:**ViewModels are specialized classes that shape data for a specific view, separating UI concerns from domain models.
-* **CRUD operations:**Learned `Edit` and `Delete` features and implemented them.
-* **Partial views:**Created `_partial views` to avoid reuse of code.
-* **ViewData["]:** Used this to pass small, unstructured data (like page titles) from a controller to a view without creating a full ViewModel.
-* **Layout:**Used `_layout` in shared views and fixed the `nav` links. 
-* **Session:**Learnt the use of `HttpContext.Session`.
+* **ViewModels:** ViewModels are specialized classes that shape data for a specific view, separating UI concerns from domain models.
+* **CRUD operations:** Learned `Edit` and `Delete` features and implemented them.
+* **Partial views:** Created `_partial views` to avoid reuse of code.
+* **ViewData[""]:** Used this to pass small, unstructured data (like page titles) from a controller to a view without creating a full ViewModel.
+* **Layout:** Used `_layout` in shared views and fixed the `nav` links. 
+* **Session:** Learnt the use of `HttpContext.Session`.
 
 ### Phase 3: CSS + Layouts
 * **Box Model:** Understanding margin (outside), border, padding (inside), and content layers for proper spacing.
@@ -57,7 +65,22 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * **Media Queries:** Using `@media (max-width: 768px)` to apply responsive styles for mobile devices.
 * **Browser DevTools:** Using Inspect (F12) to debug CSS, see applied styles, and understand the HTML structure.
 * **CSS Cascade:** Understanding that styles read top-to-bottom, and later rules override earlier ones with equal specificity.
+* **Razor Partial Views:** Created reusable UI components (`_StatCard.cshtml`) that can be called multiple times with different data - change the partial once, all instances update.
+* **ViewModels for Components:** Used `StatCardViewModel` with `object` type to handle different data types (int, string, decimal) in a single reusable component.
+* **Flexbox Grid Layouts:** Built responsive card grids using `flex-wrap`, `gap`, and `calc()` for dynamic column layouts (3 → 2 → 1 columns).
+* **CSS Transform & Box Shadow:** Applied `transform: translateY()` for hover lift effects and layered `box-shadow` for depth perception.
+* **Responsive Design Patterns:** Implemented mobile-first thinking with breakpoints at 768px (tablet) and 480px (mobile).
+* **Controller Data Sharing:** Used `public static` properties to expose private data between controllers (`BooksController.Books`).
+* **Manual Algorithm Implementation:** Built most-popular-category logic using nested loops (O(n²)) instead of LINQ, demonstrating understanding of underlying logic.
 
 
 ## Current Phase
-Phase 2 - Week 3 - Day 4
+**Phase 3 Complete!** ✅  
+**Ready for Phase 4:** SQL + Entity Framework Core
+
+---
+
+## 📊 Stats
+- **Total Projects Completed:** 8/10+ mini-projects
+- **Phases Completed:** 3/9
+- **Current Focus:** Moving from in-memory data to real database persistence
