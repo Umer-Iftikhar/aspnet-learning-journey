@@ -1,0 +1,52 @@
+﻿@model BookLibrary.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Dashboard</h1>
+
+<div class="dashboard-stats">
+    @* Card 1: Total Books *@
+    @await Html.PartialAsync("_StatCard", new StatCardViewModel
+    {
+    Label = "Total Books",
+    Value = Model.TotalBooks,
+    Icon = "📚"
+    })
+   
+    @* Card 2: Total Categories *@
+    @await Html.PartialAsync("_StatCard", new StatCardViewModel
+    {
+    Label = "Total Categories",
+    Value = Model.TotalCategories,
+    Icon = "📂"
+    })
+
+    @* Card 3: Most Popular Category *@
+    @await Html.PartialAsync("_StatCard", new StatCardViewModel
+    {
+    Label = "Most Popular Category",
+    Value = Model.MostPopularCategory,
+    Icon = "🏆"
+    })
+
+    @* Card 4: Newest Book *@
+    @await Html.PartialAsync("_StatCard", new StatCardViewModel
+    {
+    Label = "Newest Book Added",
+    Value = Model.NewestAddedBook,
+    Icon = "📖"
+    })
+
+    @* Card 5: Average Books Per Category *@
+    @await Html.PartialAsync("_StatCard", new StatCardViewModel
+    {
+    Label = "Books Per Category",
+    Value = Math.Round(Model.AverageBooksPerCategory, 2),
+    Icon = "📊"
+    })
+</div>
+
+@* Add the using statement at the top of the file *@
+@using BookLibrary.ViewModels
