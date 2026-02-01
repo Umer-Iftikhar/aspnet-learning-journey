@@ -93,7 +93,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 **Phase 4 Started:** LINQ Practice Complete ✅  
 **Next Up:** MySQL + EF Core Setup (Tomorrow)
 
----
+----
 
 ## 📊 Stats
 - **Total Projects Completed:** 8/10+ mini-projects
