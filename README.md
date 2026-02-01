@@ -19,7 +19,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 3.2: Dashboard with Cards
 
 ### PHASE 4: SQL + Entity Framework Core (In Progress)
-- [ ] Setup: MySQL + EF Core Tools
+- [✅] Setup: MySQL + EF Core Tools
 - [✅] LINQ Deep Dive Practice (2 hours)
 - [ ] Project 4.1: Todo App with Database
 - [ ] Project 4.2: Blog Posts
@@ -29,7 +29,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [ ] Phase 5: JavaScript + DOM
 - [ ] Phase 6: Authentication + Authorization
 - [ ] Phase 7: Validation + Error Handling
-- [ ] Phase 8: Capstone E-Commerce Project
+- [ ] Phase 8: Project: Indie Game Discovery Platform
 - [ ] Phase 9: Production Patterns (MANDATORY)
 
 
@@ -91,7 +91,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ## Current Phase
 **Phase 4 Started:** LINQ Practice Complete ✅  
-**Next Up:** MySQL + EF Core Setup (Tomorrow)
+**Next Up:** Project 4.1: Todo App with Database
 
 ----
 
