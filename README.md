@@ -18,9 +18,9 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 3.1: Style Your Book Library 
 - [✅] Project 3.2: Dashboard with Cards
 
-### PHASE 4: SQL + Entity Framework Core (Next)
+### PHASE 4: SQL + Entity Framework Core (In Progress)
 - [ ] Setup: MySQL + EF Core Tools
-- [ ] LINQ Deep Dive Practice (2 hours)
+- [✅] LINQ Deep Dive Practice (2 hours)
 - [ ] Project 4.1: Todo App with Database
 - [ ] Project 4.2: Blog Posts
 - [ ] Project 4.3: Product Inventory
@@ -74,13 +74,29 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * **Manual Algorithm Implementation:** Built most-popular-category logic using nested loops (O(n²)) instead of LINQ, demonstrating understanding of underlying logic.
 
 
+### Phase 4: LINQ Deep Dive (In Progress)
+* **Method Syntax vs Query Syntax:** Used method syntax (`.Where()`, `.Select()`) throughout - more concise and closer to functional programming style.
+* **Deferred Execution:** `IEnumerable` queries don't execute until iterated - learned the difference between building a query and running it.
+* **`.ToList()` Materialization:** Calling `.ToList()` executes the query immediately and caches results in memory - prevents re-execution on multiple iterations.
+* **Filtering with `.Where()`:** Applied lambda predicates to filter collections based on conditions (price, category, stock levels).
+* **Sorting with `.OrderBy()` and `.ThenBy()`:** Chained sorting operations - primary sort by category, secondary by price.
+* **Aggregation Functions:** Used `.Sum()`, `.Average()`, `.Max()`, `.Count()` for calculations without manual loops.
+* **Grouping with `.GroupBy()`:** Grouped products by category, accessed `group.Key` and iterated over group items.
+* **Projection with `.Select()`:** Transformed data into new shapes - anonymous types with calculated properties (e.g., `PriceWithTax`).
+* **Anonymous Types:** Created objects on-the-fly with `new { Property = value }` - useful for queries but can't be returned from methods.
+* **Method Chaining:** Combined multiple LINQ operations in one chain - filter → sort → group → project.
+* **`.Any()` for Existence Checks:** Used `.Any()` to check if a collection has items before iterating - cleaner than `.Count() > 0`.
+* **IEnumerable vs IQueryable (Theory):** Learned IEnumerable works in-memory (C# does filtering), IQueryable works with databases (SQL does filtering) - critical for Phase 4 EF Core.
+
+
 ## Current Phase
-**Phase 3 Complete!** ✅  
-**Ready for Phase 4:** SQL + Entity Framework Core
+**Phase 4 Started:** LINQ Practice Complete ✅  
+**Next Up:** MySQL + EF Core Setup (Tomorrow)
 
 ---
 
 ## 📊 Stats
 - **Total Projects Completed:** 8/10+ mini-projects
+- **LINQ Exercises Completed:** 8/8 (2-hour deep dive)
 - **Phases Completed:** 3/9
-- **Current Focus:** Moving from in-memory data to real database persistence
+- **Current Focus:** Preparing for database persistence with MySQL + Entity Framework Core
