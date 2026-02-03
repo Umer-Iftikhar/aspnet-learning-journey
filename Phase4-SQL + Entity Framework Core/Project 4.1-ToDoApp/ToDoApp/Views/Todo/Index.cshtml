@@ -1,0 +1,21 @@
+﻿@using ToDoApp.Models
+@model List<TodoItem>
+
+    <h1>Hello, Todo List!</h1>
+
+        <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.TaskDescription - @(item.IsCompleted ? "Completed" : "Pending") - @item.CreatedAt</li>
+
+        }
+        </ul>
+         <form asp-action="Create" method="post" class="form-class">
+             <div class="input-group">
+                <input name="taskDescription" placeholder="New task description" required />
+                <button type="submit" lass="btn btn-primary">Add Task</button>
+            </div>
+         </form>
+
+        
+           
