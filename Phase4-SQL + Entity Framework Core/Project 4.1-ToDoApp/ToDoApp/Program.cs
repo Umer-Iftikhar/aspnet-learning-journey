@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ToDoApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,9 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-var connectionString = "Server=localhost;Database=TodoAppTest;User=root;Password=WweBeast981;";
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 29)); 
-
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 44));
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, serverVersion));
 
