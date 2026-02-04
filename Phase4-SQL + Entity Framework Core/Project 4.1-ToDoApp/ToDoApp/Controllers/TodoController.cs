@@ -25,21 +25,38 @@ namespace ToDoApp.Controllers
         {
             if (string.IsNullOrWhiteSpace(taskDescription))
             {
-                return BadRequest("Task description cannot be empty.");
+                return RedirectToAction("Index");
             }
             var newItem = new TodoItem
             {
                 TaskDescription = taskDescription,
-                IsCompleted = false,
+                IsCompleted = false,    
                 CreatedAt = DateTime.UtcNow
             };
             _context.TodoItems.Add(newItem);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public async Task<IActionResult> ToggleCompletion(int id)
+        {
+            var item = await _context.TodoItems.FindAsync(id);
+            if (item != null)
+            {
+                item.IsCompleted = !item.IsCompleted;
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
 
+        }
 
-
-
+        [HttpPost]
+        public async Task<IActionResult> ClearAll()
+        {
+            var allItems =await _context.TodoItems.ToListAsync();
+            _context.TodoItems.RemoveRange(allItems);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
      }
 }
