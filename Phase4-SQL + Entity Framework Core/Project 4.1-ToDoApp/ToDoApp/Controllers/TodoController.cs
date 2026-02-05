@@ -16,6 +16,7 @@ namespace ToDoApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            //var debugConn = _context.Database.GetConnectionString();
             var records = await _context.TodoItems.ToListAsync();
             return View(records);
         }
