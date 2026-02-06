@@ -24,6 +24,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 4.1: Todo App with Database
 - [ ] Project 4.2: Blog Posts
 - [ ] Project 4.3: Product Inventory
+- [ ] SQL Practice Block (Day 1-2, 4-5 hours total)
 
 ### Upcoming Phases
 - [ ] Phase 5: JavaScript + DOM
@@ -31,7 +32,9 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [ ] Phase 7: Validation + Error Handling
 - [ ] Phase 8: Project: Indie Game Discovery Platform
 - [ ] Phase 9: Production Patterns (MANDATORY)
-
+- [ ] Phase 10: WEB API: Convert Capstone to REST API
+- [ ] Phase 11: Azure Deployment
+- [ ] Phase 11: React Frontend (API Consumer)
 
 ## 🧠 Key Lessons Learned
 
