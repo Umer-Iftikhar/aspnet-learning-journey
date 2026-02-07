@@ -1,0 +1,34 @@
+﻿@model BlogApp.ViewModels.PostIndexViewModel
+@{
+    ViewData["Title"] = "Blog Posts";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Index" method="get">
+    <input type="text" name="searchQuery" value="@Model.SearchQuery" placeholder="Search posts..." />
+    <select name="sortOrder">
+        <option value="newest" selected="@(Model.SortOrder == "newest")">Newest</option>
+        <option value="oldest" selected="@(Model.SortOrder == "oldest")">Oldest</option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+
+@if (Model.Posts.Any())
+{
+    <ul>
+        @foreach(var post in Model.Posts)
+        {
+            <li>
+                <h3><a asp-action="Details" asp-route-id="@post.Id">@post.Title</a></h3>
+                <p>@post.ContentPreview</p>
+                <p>By @post.AuthorName on @post.CreatedDate.ToString("MMM dd, yyyy")</p>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No posts found.</p>
+}
+
+<a asp-action="Create">Create New Post</a>
