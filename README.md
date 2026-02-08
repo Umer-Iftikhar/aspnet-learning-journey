@@ -36,13 +36,12 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [ ] Phase 11: Azure Deployment
 - [ ] Phase 11: React Frontend (API Consumer)
 
-
+----
 
 ## Current Phase
 **Phase 4 Started:** Project 4.2 Complete ✅  
 **Next Up:** Project 4.3: 
 
-----
 
 ## 📂 Quick Links
 * 🗺️ [**Full Learning Roadmap**](./docs/Roadmap.md) 
