@@ -46,7 +46,7 @@
 
 * **Project 4.3:** Product Inventory – Manage one-to-many relationships (Category → Products) and use .Include() for data fetching.
 
-* **SQL Practice***
+* **SQL Practice**
 
 ----
 
