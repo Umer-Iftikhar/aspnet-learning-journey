@@ -7,6 +7,8 @@
 * **Model Binding:** Discovered how ASP.NET Core automatically maps HTML `name` attributes to C# Class properties.
 * **TempData:** Used this to persist small amounts of data across a single redirect.
 
+----
+
 
 ### Phase 2: Razor & Tag Helpers
 * **Tag Helpers vs Raw HTML:** Tag Helpers (`asp-for`, `asp-action`) provide compile-time safety and auto-generate correct HTML attributes based on C# types.
@@ -22,6 +24,7 @@
 * **Layout:** Used `_layout` in shared views and fixed the `nav` links. 
 * **Session:** Learnt the use of `HttpContext.Session`.
 
+----
 
 ### Phase 3: CSS + Layouts
 * **Box Model:** Understanding margin (outside), border, padding (inside), and content layers for proper spacing.
@@ -41,6 +44,7 @@
 * **Controller Data Sharing:** Used `public static` properties to expose private data between controllers (`BooksController.Books`).
 * **Manual Algorithm Implementation:** Built most-popular-category logic using nested loops (O(n²)) instead of LINQ, demonstrating understanding of underlying logic.
 
+----
 
 ### Phase 4: LINQ Deep Dive 
 * **Method Syntax vs Query Syntax:** Used method syntax (`.Where()`, `.Select()`) throughout - more concise and closer to functional programming style.
@@ -56,6 +60,7 @@
 * **`.Any()` for Existence Checks:** Used `.Any()` to check if a collection has items before iterating - cleaner than `.Count() > 0`.
 * **IEnumerable vs IQueryable (Theory):** Learned IEnumerable works in-memory (C# does filtering), IQueryable works with databases (SQL does filtering) - critical for Phase 4 EF Core.
 
+----
 
 ### Phase 4: SQL + Entity Framework Core (In Progress)
 * **Code-First Workflow:** Define C# classes (models) first, EF Core generates matching database tables via migrations - keeps models as source of truth and eliminates manual SQL.
@@ -66,3 +71,6 @@
 * **Dependency Injection with DbContext:** ASP.NET Core injects `AppDbContext` into controller constructors automatically - enables centralized connection management and makes code testable without hardcoding database dependencies.
 * **SaveChangesAsync Pattern:** EF Core tracks changes in memory but doesn't persist them until `SaveChangesAsync()` is called - forgetting it means changes are lost after the request ends; async version prevents thread blocking during I/O operations.
 * **Migration Workflow:** `Add-Migration` generates C# code with `Up()` (apply changes) and `Down()` (rollback) methods; `Update-Database` executes the migration and runs actual SQL - separation allows reviewing changes before touching the database.
+
+----
+
