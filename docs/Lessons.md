@@ -62,7 +62,9 @@
 
 ----
 
-### Phase 4: SQL + Entity Framework Core (In Progress)
+### Phase 4: SQL + Entity Framework Core
+
+#### Project 4.1: Todo App (Database Fundamentals)
 * **Code-First Workflow:** Define C# classes (models) first, EF Core generates matching database tables via migrations - keeps models as source of truth and eliminates manual SQL.
 * **Migrations as Version Control:** Migrations track database schema changes over time - changing a model without creating a migration causes a mismatch between code and database structure.
 * **Async Database Operations:** Using `async`/`await` (e.g., `.ToListAsync()`) releases server threads while waiting for database responses - synchronous methods block threads, reducing concurrent request capacity.
@@ -72,5 +74,19 @@
 * **SaveChangesAsync Pattern:** EF Core tracks changes in memory but doesn't persist them until `SaveChangesAsync()` is called - forgetting it means changes are lost after the request ends; async version prevents thread blocking during I/O operations.
 * **Migration Workflow:** `Add-Migration` generates C# code with `Up()` (apply changes) and `Down()` (rollback) methods; `Update-Database` executes the migration and runs actual SQL - separation allows reviewing changes before touching the database.
 
-----
+#### Project 4.2: Blog Posts (Advanced Queries & Architecture)
+* **Query String Parameters:** Controller actions can receive data from URL query strings (e.g., `?searchQuery=hello&sortOrder=newest`) - enables bookmarkable and shareable search results.
+* **Conditional LINQ with AsQueryable:** Building queries conditionally before execution using `AsQueryable()` - only hits database once with all filters applied, not multiple times.
+* **LINQ .Contains() for Search:** Partial string matching in database queries translates to SQL `LIKE '%term%'` - enables flexible search functionality.
+* **Multiple ViewModels Pattern:** Creating specialized ViewModels for different purposes (list summaries, forms, index pages) - each shaped for its specific view rather than using entities everywhere.
+* **Entity to ViewModel Mapping:** Using `.Select()` to transform database entities into ViewModels with calculated properties (like content previews) - separates database concerns from UI presentation.
+* **String Truncation with Safety:** Using `Substring()` with length checks (`content.Length > 100 ? content.Substring(0, 100) + "..." : content`) - prevents index out of range errors.
+* **GET Forms for Search:** Forms with `method="get"` create searchable, bookmarkable URLs - appropriate for queries that don't modify data (vs POST for create/update/delete).
+* **Form Pre-filling:** Using ViewModel data to pre-populate form inputs (`value="@Model.SearchQuery"`) - maintains user's search state across requests.
+* **Edit Pattern (Fetch-Modify-Save):** Retrieve entity with `FindAsync()`, modify properties, call `SaveChangesAsync()` - EF Core change tracking handles the UPDATE without explicit `Update()` call.
+* **Route Parameters vs Form Body:** Using `asp-route-id` for links and GET requests (data in URL), hidden inputs for POST forms (data in body) - understanding when each approach is appropriate.
+* **Method Overloading for GET/POST:** Two actions with same name differentiated by `[HttpPost]` attribute - standard CRUD pattern (GET shows form, POST processes it).
+* **HTTP 405 (Method Not Allowed):** When route matches but HTTP method doesn't - often caused by missing `[HttpPost]` or conflicting action signatures.
+* **HTTP 404 (Not Found) in Routing:** Parameter mismatches between route pattern and action signature - explicit routes or `[ActionName]` resolve ambiguity.
 
+----

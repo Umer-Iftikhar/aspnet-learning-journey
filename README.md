@@ -49,7 +49,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * 📔 [**Key Lessons Learned**](./docs/Lessons.md) 
 
 ## 📊 Stats
-- **Total Projects Completed:** 9 mini-projects
+- **Total Projects Completed:** 10 mini-projects
 - **LINQ Exercises Completed:** 8/8 (2-hour deep dive)
 - **Phases Completed:** 3/9
 - **Current Focus:** Preparing for database persistence with MySQL + Entity Framework Core
