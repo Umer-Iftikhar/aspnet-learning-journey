@@ -22,7 +22,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Setup: MySQL + EF Core Tools
 - [✅] LINQ Deep Dive Practice (2 hours)
 - [✅] Project 4.1: Todo App with Database
-- [ ] Project 4.2: Blog Posts
+- [✅] Project 4.2: Blog Posts
 - [ ] Project 4.3: Product Inventory
 - [ ] SQL Practice Block (Day 1-2, 4-5 hours total)
 
@@ -39,8 +39,8 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 
 ## Current Phase
-**Phase 4 Started:** Project 4.1 Complete ✅  
-**Next Up:** Project 4.2: 
+**Phase 4 Started:** Project 4.2 Complete ✅  
+**Next Up:** Project 4.3: 
 
 ----
 
