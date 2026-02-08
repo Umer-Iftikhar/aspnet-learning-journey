@@ -1,4 +1,5 @@
 ﻿using BlogApp.Data;
+using BlogApp.Models;
 using BlogApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,23 @@ namespace BlogApp.Controllers
                 SortOrder = sortOrder ?? "newest"
             };
             return View(viewModel);
+        }
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(PostFormViewModel vmodel)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(vmodel);
+            }
+            var newPost = new Post { AuthorName = vmodel.AuthorName, Content = vmodel.Content, Title = vmodel.Title, CreatedDate = DateTime.UtcNow };
+            _context.Posts.Add(newPost);
+            await _context.SaveChangesAsync();
+            
+            return RedirectToAction(nameof(Index));
         }
     }
 }
