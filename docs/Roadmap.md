@@ -38,11 +38,15 @@
 
 ```Goal: Design databases and use EF Core Code-First approach for real persistence.```
 
+* **LINQ Practice**
+
 * **Project 4.1:** Todo App with Database – Use AppDbContext and migrations to perform CRUD with a real database.
 
 * **Project 4.2:** Blog Posts – Implement search and sorting functionality using LINQ.
 
 * **Project 4.3:** Product Inventory – Manage one-to-many relationships (Category → Products) and use .Include() for data fetching.
+
+* **SQL Practice***
 
 ----
 
@@ -85,6 +89,8 @@
 ### PHASE 8: Capstone Project - Indie Game Discovery Platform (Week 9-10)
 
 ```Goal: Build a full-scale application using a hybrid data access strategy (EF Core + Dapper).```
+
+* **Hybrid Database uproach:** Using both Entity Framework Core and Dapper but better performance
 
 * **Core Features:** User roles (Admin, Dev, Player), image uploads, AJAX-based wishlist, and integration with the GitHub API.
 
