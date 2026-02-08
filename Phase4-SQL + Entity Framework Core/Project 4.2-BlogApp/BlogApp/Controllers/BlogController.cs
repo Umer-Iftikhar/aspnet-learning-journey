@@ -66,5 +66,57 @@ namespace BlogApp.Controllers
             
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var detailPost = await _context.Posts.FindAsync(id);
+            if (detailPost == null)
+            {
+                return NotFound();
+            }
+           
+            return View(detailPost);
+        }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var editPost = await _context.Posts.FindAsync(id);
+            if(editPost == null)
+            {
+                return NotFound();
+            }
+            var editViewModel = new PostFormViewModel { Id = editPost.Id, Title = editPost.Title, Content = editPost.Content, AuthorName = editPost.AuthorName };
+            return View(editViewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(PostFormViewModel viewModel)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+            var editPost = await _context.Posts.FindAsync(viewModel.Id);
+            if (editPost == null)
+            {
+                return NotFound();
+            }
+            editPost.Title = viewModel.Title;
+            editPost.Content = viewModel.Content;
+            editPost.AuthorName = viewModel.AuthorName;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletePost = await _context.Posts.FindAsync(id);
+            if(deletePost == null)
+            {
+                return NotFound();
+            }
+            _context.Posts.Remove(deletePost);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
