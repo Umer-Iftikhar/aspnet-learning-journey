@@ -89,4 +89,6 @@
 * **HTTP 405 (Method Not Allowed):** When route matches but HTTP method doesn't - often caused by missing `[HttpPost]` or conflicting action signatures.
 * **HTTP 404 (Not Found) in Routing:** Parameter mismatches between route pattern and action signature - explicit routes or `[ActionName]` resolve ambiguity.
 
+#### Project 4.3: Product Inventory (Relationships)
+
 ----

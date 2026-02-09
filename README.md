@@ -39,8 +39,8 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 ----
 
 ## Current Phase
-**Phase 4 Started:** Project 4.2 Complete ✅  
-**Next Up:** Project 4.3: 
+**Phase Started:** 4
+**Project Started:** Project 4.3: 
 
 
 ## 📂 Quick Links
