@@ -24,8 +24,25 @@ namespace ProductInventory.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Category category)
         {
-           
             _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null) 
+                return NotFound();
+            return View(category);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(Category category)
+        {
+            var existingCategory = await _context.Categories.FindAsync(category.Id);
+            if (existingCategory == null) 
+                return NotFound();
+            existingCategory.Name = category.Name;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
