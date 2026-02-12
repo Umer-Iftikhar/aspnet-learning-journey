@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ProductInventory.Models.Category>
+@{
+    ViewData["Title"] = "Categories";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+
+    <ul>
+@foreach(var category in Model)
+{
+    <li>@category.Name
+    <a asp-action="Edit" asp-route-id="@category.Id">Edit</a>
+    <a asp-action="Delete" asp-route-id="@category.Id">Delete</a>
+    </li>
+}
+    </ul>
+
+<a asp-action="Create">Create New Category</a>
