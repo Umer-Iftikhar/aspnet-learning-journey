@@ -64,9 +64,17 @@ namespace ProductInventory.Controllers
             {
                 return NotFound();
             }
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch(DbUpdateException )
+            {
+                ViewBag.ErrorMessage = "Unable to delete category. It may be associated with existing products.";
+                return View("Delete", category);
+            }
         }
     }
 }
