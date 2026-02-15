@@ -34,6 +34,57 @@ namespace ProductInventory.Controllers
             viewModel.Categories = await _context.Categories.ToListAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            var viewModel = new ProductFormViewModel
+            {
+                Product = product,
+                Categories = await _context.Categories.ToListAsync()
+            };
+            return View(viewModel);
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Edit(ProductFormViewModel viewModel)
+        {
+            var existingProduct = await _context.Products.FindAsync(viewModel.Product.Id);
+            if (existingProduct == null)
+            {
+                return NotFound();
+            }
+            existingProduct.Name = viewModel.Product.Name;
+            existingProduct.Price = viewModel.Product.Price;
+            existingProduct.CategoryId = viewModel.Product.CategoryId;
+            existingProduct.Stock = viewModel.Product.Stock;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));   
+        }
     }
     
 }
