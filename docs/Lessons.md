@@ -90,5 +90,16 @@
 * **HTTP 404 (Not Found) in Routing:** Parameter mismatches between route pattern and action signature - explicit routes or `[ActionName]` resolve ambiguity.
 
 #### Project 4.3: Product Inventory (Relationships)
+* **One-to-Many Relationships:** The "many" side always holds the foreign key - configure the relationship once from the FK side in `OnModelCreating`, not from both sides simultaneously.
+* **Navigation Properties:** Two properties needed on the FK side: an `int` foreign key (stored in database) and a nullable navigation property (used by EF Core for joins) - both serve different purposes and are both necessary.
+* **Fluent API Basics:** `OnModelCreating` with `.HasOne()`, `.WithMany()`, `.HasForeignKey()`, `.OnDelete()` configures relationship behavior that Data Annotations cannot express - keeps models clean and centralizes database configuration.
+* **DeleteBehavior.Restrict vs Cascade:** Restrict blocks parent deletion if children exist (safer, requires `try-catch (DbUpdateException)`); Cascade automatically deletes children (convenient but dangerous) - choose intentionally based on data integrity requirements.
+* **Eager Loading with `.Include()`:** Navigation properties are `null` at runtime without explicit `.Include()` - EF Core requires you to declare which related entities to load, it never loads them automatically.
+* **SelectList for Dropdowns:** `new SelectList(collection, "valueField", "displayField")` populates `<select>` elements - value field is what gets saved to database, display field is what user sees.
+* **ViewModel for Multi-Source Views:** When a view needs data from multiple sources simultaneously, a ViewModel wraps them together - avoids ViewBag and maintains strong typing throughout.
+* **Categories Repopulation Pattern:** Any list used for dropdowns must be re-fetched before returning a view from POST - form submissions only send selected values back, never the full list.
+* **IQueryable Conditional Filtering:** `AsQueryable()` builds a query without hitting the database, allowing conditional `.Where()` chains before final `.ToListAsync()` execution - results in one SQL query regardless of how many filters are applied. 
+* **HTML Selected Attribute Gotcha:** `selected=""` (empty string) still selects an option in HTML - unselected options must have the attribute completely absent, requiring `@if/else` blocks instead of ternary operators that render empty strings.
+* **base.OnModelCreating(modelBuilder):** Must always be the first line in overridden `OnModelCreating` - skipping it breaks ASP.NET Identity table generation when authentication is added later. 
 
 ----
