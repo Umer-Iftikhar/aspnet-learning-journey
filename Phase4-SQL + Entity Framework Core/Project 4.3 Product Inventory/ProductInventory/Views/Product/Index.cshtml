@@ -1,10 +1,33 @@
-﻿@model IEnumerable<ProductInventory.Models.Product>
+﻿@model ProductInventory.ViewModels.ProductIndexViewModel
+
 
 @{
     ViewData["Title"] = "Products";
 }
 <h1>@ViewData["Title"]</h1>
 <a asp-action="Create">Create New Product</a>
+
+<form asp-action="Index" method="get">
+    <select name="categoryId">
+        <option value="">All Categories</option>
+        @foreach (var category in Model.Categories)
+        {
+            @* <option value="@category.Id" 
+                selected=@(Model.SelectedCategoryId == category.Id ? "selected" : "")>
+                @category.Name
+            </option> *@
+            if (category.Id == Model.SelectedCategoryId)
+            {
+                <option value="@category.Id" selected>@category.Name</option>
+            }
+            else
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        }
+    </select>
+    <button type="submit">Filter</button>
+</form>
 
 <table>
     <thead>
@@ -17,7 +40,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Products)
         {
             <tr style="@(item.Stock < 5 ? "background-color:yellow;" : "")">
                 <td>@item.Name</td>
@@ -31,3 +54,4 @@
             </tr>
         }
     </tbody>
+</table>

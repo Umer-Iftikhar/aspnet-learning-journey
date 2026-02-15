@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductInventory.Data;
+using ProductInventory.Models;
 using ProductInventory.ViewModels;
 
 namespace ProductInventory.Controllers
@@ -12,10 +13,20 @@ namespace ProductInventory.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? categoryId)
         {
-            var allProducts = await _context.Products.Include(p => p.Category).ToListAsync();
-            return View(allProducts);
+            var viewModel = new ProductIndexViewModel
+            {
+                Products = await _context.Products
+                    .Include(p => p.Category)
+                    .AsQueryable()
+                    .Where(p => !categoryId.HasValue || p.CategoryId == categoryId)
+                    .ToListAsync(),
+                Categories = await _context.Categories.ToListAsync(),
+                //SelectedCategoryId = categoryId
+            };
+            return View(viewModel);
+            
         }
         public async Task<IActionResult> Create()
         {
