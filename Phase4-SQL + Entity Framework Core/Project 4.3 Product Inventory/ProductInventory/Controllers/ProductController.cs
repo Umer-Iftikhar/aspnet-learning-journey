@@ -31,6 +31,7 @@ namespace ProductInventory.Controllers
         {
             _context.Products.Add(viewModel.Product);
             await _context.SaveChangesAsync();
+            viewModel.Categories = await _context.Categories.ToListAsync();
             return RedirectToAction(nameof(Index));
         }
     }
