@@ -3,16 +3,22 @@
 
     <h1>Hello, Todo List!</h1>
 
+    <div id="status-message" class="hidden"></div>
+
         <ul>
         @foreach (var item in Model)
         {
-            <li>@item.TaskDescription - @(item.IsCompleted ? "Completed" : "Pending") - @item.CreatedAt
-                    <div class = "todo check checkbox">
-                        @* <input type="hidden" name="id" value="@item.Id"  /> *@
-                        <input type = "checkbox" data-id = "@item.Id" @(item.IsCompleted ? "checked" : "") />
-                    </div>
+            <li>
+                @item.TaskDescription - 
+                <span class="status-text" data-id="@item.Id">
+                    @(item.IsCompleted ? "Completed" : "Pending")
+                </span> 
+                - @item.CreatedAt
+        
+                <div class="todo check checkbox">
+                    <input type="checkbox" data-id="@item.Id" @(item.IsCompleted ? "checked" : "") />
+                </div>
             </li>
-
         }
         </ul>
          <form asp-action="Create" method="post" class="form-class">

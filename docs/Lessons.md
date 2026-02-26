@@ -103,3 +103,17 @@
 * **base.OnModelCreating(modelBuilder):** Must always be the first line in overridden `OnModelCreating` - skipping it breaks ASP.NET Identity table generation when authentication is added later. 
 
 ----
+
+### Phase 5: JavaScript and DOM Manipulation
+* **The "Wait for DOM" Pattern:** Used document.addEventListener('DOMContentLoaded', ...) to ensure JavaScript only runs after the browser has fully built the HTML tree - prevents "ReferenceError" when scripts try to find elements that haven't rendered yet.
+* **AJAX flow:** Implemented asynchronous POST requests to update data without a page reload. Learned that fetch() is a two-step process: first waiting for the response headers, then await response.json() to unpack the actual data body.
+* **async/await in JS:** Used asynchronous functions to handle network requests linearly. This avoids "callback hell" and allows the use of try...catch blocks for cleaner error handling, similar to C# Task logic.
+* **data-* attributes:** Used data-id="@item.Id" to "tag" HTML elements with database primary keys. JavaScript reads these via the element.dataset object, creating a seamless bridge between the database record and the UI element.
+* **DOM Traversal & Selection:** Mastered document.querySelector() with attribute selectors (e.g., span[data-id="1"]) to target specific elements, and this.closest('li') to find parent containers relative to the clicked element.
+* **State Management with classList.toggle:** Used classList.toggle('class-name', condition) to switch UI states (like strike-through text) in a single line. This enforces a "source of truth" where the UI state always matches the checkbox boolean.
+* **Safe UI Updates with innerText:** Preferred innerText over innerHTML to prevent XSS (Cross-Site Scripting) attacks, ensuring the browser treats server responses as plain text rather than executable code.
+* **CSS transitions:** Created "fading" effects by toggling classes that trigger CSS transition: opacity 0.5s. Learned that opacity: 0 is better than display: none for animations because it allows the browser to calculate the visual "fade" between states.
+* **Error handling:** Fixed syntax errors in console.error() and implemented "UI Reversion"—if a database update fails, the JavaScript catch block automatically unchecks the checkbox to keep the UI in sync with the actual data.
+* **Timers with setTimeout:** Used setTimeout() to create temporary "toast" notifications. Learned to coordinate the timer duration with CSS transition speeds so elements are removed from the DOM only after their fade animation finishes.
+
+----
