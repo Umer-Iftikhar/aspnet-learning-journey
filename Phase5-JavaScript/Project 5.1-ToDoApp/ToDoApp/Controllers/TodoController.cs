@@ -47,7 +47,11 @@ namespace ToDoApp.Controllers
                 item.IsCompleted = !item.IsCompleted;
                 await _context.SaveChangesAsync();
             }
-            return RedirectToAction("Index");
+            else
+            {
+                return Json(new { success = false, message = "Item not found" });
+            }
+            return Json(new{ success = true, message = "Status updated" });
 
         }
 
