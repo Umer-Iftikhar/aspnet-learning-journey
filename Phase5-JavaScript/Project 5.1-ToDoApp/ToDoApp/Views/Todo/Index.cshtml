@@ -1,0 +1,35 @@
+﻿@using ToDoApp.Models
+@model List<TodoItem>
+
+    <h1>Hello, Todo List!</h1>
+
+        <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.TaskDescription - @(item.IsCompleted ? "Completed" : "Pending") - @item.CreatedAt
+                <form asp-action="ToggleCompletion" method="post">
+                    <div class = "todo check checkbox">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <input type="checkbox" @(item.IsCompleted ? "checked" : "") onchange="this.form.submit()" />
+                    </div>
+                </form>
+            </li>
+
+        }
+        </ul>
+         <form asp-action="Create" method="post" class="form-class">
+             <div class="input-group">
+                <input name="taskDescription" placeholder="New task description" required />
+                <button type="submit" class="btn btn-primary">Add Task</button>
+            </div>
+         </form>
+
+         <form asp-action="ClearAll" method="post" class="form-class"">
+            <div class="input-group">
+                <button type="submit" class="btn btn-danger">Clear All Tasks</button>
+                </div>
+         </form>
+
+
+        
+           
