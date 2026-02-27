@@ -1,0 +1,57 @@
+﻿@model ProductInventory.ViewModels.ProductIndexViewModel
+
+
+@{
+    ViewData["Title"] = "Products";
+}
+<h1>@ViewData["Title"]</h1>
+<a asp-action="Create">Create New Product</a>
+
+<form asp-action="Index" method="get">
+    <select name="categoryId">
+        <option value="">All Categories</option>
+        @foreach (var category in Model.Categories)
+        {
+            @* <option value="@category.Id" 
+                selected=@(Model.SelectedCategoryId == category.Id ? "selected" : "")>
+                @category.Name
+            </option> *@
+            if (category.Id == Model.SelectedCategoryId)
+            {
+                <option value="@category.Id" selected>@category.Name</option>
+            }
+            else
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        }
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            <tr style="@(item.Stock < 5 ? "background-color:yellow;" : "")">
+                <td>@item.Name</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.Stock</td>
+                <td>@item.Category?.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

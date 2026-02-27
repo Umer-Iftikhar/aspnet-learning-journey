@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model ProductInventory.ViewModels.ProductFormViewModel
+@{
+    ViewData["Title"] = "Edit Product";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Product.Id" />
+    <div>
+        <label asp-for="Product.Name"></label>
+        <input asp-for="Product.Name" />
+    </div>
+    <div>
+        <label asp-for="Product.Price"></label>
+        <input asp-for="Product.Price" />
+    </div>
+    <div>
+        <label asp-for="Product.Stock"></label>
+        <input asp-for="Product.Stock" />
+    </div>
+    <div>
+        <label asp-for="Product.CategoryId"></label>
+        <select asp-for="Product.CategoryId"
+                asp-items="@(new SelectList(Model.Categories, "Id", "Name"))">
+            
+            <option value="">-- Select Category --</option>
+        </select>
+    </div>
+
+    <button type="submit">Update</button>
+</form>

@@ -1,0 +1,30 @@
+﻿@model ProductInventory.Models.Category
+
+@{
+    ViewData["Title"] = "Delete Category";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div>
+    <div>
+        <label>Category Name:</label>
+        <span>@Model.Name</span>
+    </div>
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit">Delete</button>
+    </form>
+</div>
+@if(ViewBag.ErrorMessage != null)
+{
+    <p style="color:red;">@ViewBag.ErrorMessage</p>
+}
+<a asp-action="Index">Back to List</a>
+
+      
+
+
+
