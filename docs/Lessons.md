@@ -116,4 +116,9 @@
 * **Error handling:** Fixed syntax errors in console.error() and implemented "UI Reversion"—if a database update fails, the JavaScript catch block automatically unchecks the checkbox to keep the UI in sync with the actual data.
 * **Timers with setTimeout:** Used setTimeout() to create temporary "toast" notifications. Learned to coordinate the timer duration with CSS transition speeds so elements are removed from the DOM only after their fade animation finishes.
 
+* **Partial Views for AJAX:** When JavaScript replaces page content via `innerHTML`, the server must return only a partial view (not the full page) — otherwise an entire webpage gets nested inside a div, breaking the layout completely.
+* **JS Debugging Without a Compiler:** Used browser DevTools (Console + Network tab) to debug silent JS failures — checking if files load (Network tab), if elements exist (`querySelector` in console), and if events fire (`console.log`) — since JS has no compile-time errors.
+* **Script Loading Order:** Scripts placed outside `@section Scripts {}` in ASP.NET Core render before jQuery loads, causing silent failures — always wrap page-specific scripts in `@section Scripts {}` to guarantee correct load order.
+* **Never Commit Secrets:** Connection strings with passwords must never be committed to Git — use User Secrets in development and add `appsettings.json` to `.gitignore`.
+
 ----
