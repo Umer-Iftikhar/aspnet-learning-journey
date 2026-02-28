@@ -31,4 +31,8 @@
 
 <input type="text" id="productSearch" placeholder="Search products..." />
 
-@await Html.PartialAsync("_ProductsTable", Model)
+@await Html.PartialAsync("_ProductsTable", Model.Products)
+
+@section Scripts {
+    <script src="~/js/productSearch.js"></script>
+}

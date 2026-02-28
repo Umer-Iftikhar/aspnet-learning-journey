@@ -100,8 +100,15 @@ namespace ProductInventory.Controllers
 
         public async Task<IActionResult> Search(string query)
         {
+            if(string.IsNullOrEmpty(query))
+            {
+                var allProducts = await _context.Products.Include(p => p.Category).ToListAsync();
+                return PartialView("_ProductsTable", allProducts);
+            }
+
             var results = await _context.Products
                 .Where(p => p.Name.Contains(query))
+                .Include(p => p.Category)
                 .ToListAsync();
 
             return PartialView("_ProductsTable", results);
