@@ -26,7 +26,7 @@ namespace ProductInventory.Controllers
                 //SelectedCategoryId = categoryId
             };
             return View(viewModel);
-            
+
         }
         public async Task<IActionResult> Create()
         {
@@ -59,7 +59,7 @@ namespace ProductInventory.Controllers
             };
             return View(viewModel);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Edit(ProductFormViewModel viewModel)
         {
@@ -94,8 +94,19 @@ namespace ProductInventory.Controllers
             }
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));   
+            return RedirectToAction(nameof(Index));
         }
-    }
     
+
+        public async Task<IActionResult> Search(string query)
+        {
+            var results = await _context.Products
+                .Where(p => p.Name.Contains(query))
+                .ToListAsync();
+
+            return PartialView("_ProductsTable", results);
+        }
+
+    }
 }
+
