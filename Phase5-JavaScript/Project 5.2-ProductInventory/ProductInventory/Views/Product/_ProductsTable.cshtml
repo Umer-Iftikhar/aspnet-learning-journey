@@ -16,7 +16,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tableId">
                 @foreach (var item in Model)
                 {
                     <tr style="@(item.Stock < 5 ? "background-color:yellow;" : "")">

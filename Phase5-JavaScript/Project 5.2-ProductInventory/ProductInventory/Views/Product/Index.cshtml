@@ -31,8 +31,11 @@
 
 <input type="text" id="productSearch" placeholder="Search products..." />
 
+<input type="text" id="productSearchApi" placeholder="Search products (API)..." />
+
 @await Html.PartialAsync("_ProductsTable", Model.Products)
 
 @section Scripts {
     <script src="~/js/productSearch.js"></script>
+    <script src="~/js/productSearchApi.js"></script>
 }

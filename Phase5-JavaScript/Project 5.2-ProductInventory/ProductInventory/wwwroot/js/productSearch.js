@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     const productsTable = document.querySelector("#searchResults");
 
     searchInput.addEventListener("input", async function () {
-        console.log("typing detected");
+        //console.log("typing detected");
         const query = searchInput.value;
-        console.log("query: '" + query + "'");
+        //console.log("query: '" + query + "'");
 
         const response = await fetch("/Product/Search?query=" + query);
         const html = await response.text();
