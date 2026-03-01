@@ -46,7 +46,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ## Current Phase
 **Phase:** 5 — JavaScript + DOM Manipulation
-**Current Project:** Project 5.3: Dynamic Form Fields ( up next)
+**Current Project:** Project 5.3: Dynamic Form Fields (up next)
 
 
 ## 📂 Quick Links
