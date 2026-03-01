@@ -121,4 +121,9 @@
 * **Script Loading Order:** Scripts placed outside `@section Scripts {}` in ASP.NET Core render before jQuery loads, causing silent failures — always wrap page-specific scripts in `@section Scripts {}` to guarantee correct load order.
 * **Never Commit Secrets:** Connection strings with passwords must never be committed to Git — use User Secrets in development and add `appsettings.json` to `.gitignore`.
 
+* **MVC vs API Approach for Search:** Part A (MVC) returns full HTML from server — server controls presentation. Part B (API) returns raw JSON — JavaScript builds the HTML. API approach is smaller, faster at scale, and consumable by any client (mobile, React, Postman), not just browsers expecting specific HTML.
+* **Minimal API Endpoints:** Defined lightweight GET endpoints directly in Program.cs using app.MapGet() — skips controller overhead for simple, single-purpose endpoints.
+* **Building HTML from JSON in JS:** When API returns JSON, JavaScript must manually construct HTML using template literals and forEach — unlike MVC approach where server sends ready-made HTML.
+* **Stale DOM References:** Storing querySelector results in variables outside event listeners causes null errors when another operation replaces that DOM element — always re-query inside the handler when content can be replaced dynamically.
+
 ----
