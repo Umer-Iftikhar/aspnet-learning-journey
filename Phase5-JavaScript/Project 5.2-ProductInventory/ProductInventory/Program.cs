@@ -36,5 +36,15 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+app.MapGet("/api/products/search", async (string query, AppDbContext _context) =>
+{
+    var products = await _context.Products
+        .Where(p => p.Name.Contains(query)).Select(p => new
+        {
+            p.Id, p.Name, p.CategoryId, p.Price, p.Stock
+        }).ToListAsync();
+    return Results.Ok(products);
+});
+
 
 app.Run();
