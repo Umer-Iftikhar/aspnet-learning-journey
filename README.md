@@ -29,8 +29,8 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 ### PHASE 5: JavaScript + DOM Manipulation (In Progress)
 - [✅] Project 5.1: Client-Side Todo Toggle
 - [✅] Project 5.2: Live Search
-  -  [✅] Project 5.2: Live Search (Part A complete)
-  -  [✅] Project 5.2: Live Search (Part B complete)
+  -  [✅] Project 5.2: Live Search (Part A MVC)
+  -  [✅] Project 5.2: Live Search (Part B minimal API)
 - [ ] Project 5.3: Dynamic Form Fields
 
 ### Upcoming Phases
