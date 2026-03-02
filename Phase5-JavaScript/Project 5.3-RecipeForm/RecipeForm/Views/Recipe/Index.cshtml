@@ -1,5 +1,6 @@
 ﻿@using RecipeForm.Models
 @model Recipe
+
 @{
     ViewData["Title"] = "Recipes";
 }
@@ -14,12 +15,14 @@
         <textarea asp-for="Description" class="form-control"></textarea>
     </div>
     <div id="ingredientList">
-        <input type="text" name="ingredients[0]" placeholder="Enter ingredient..." />
-        
+        <div class="input-group mb-2">
+            <input type="text" name="Ingredients[0]" class="form-control" placeholder="Enter ingredient..." />
+            <button type="button" class="btn btn-outline-danger remove-btn">Remove</button>
+        </div>
     </div>
-    <button type="button" id="addIngredient" class="btn btn-secondary">Add Ingredient</button>
-    <button type="submit" class="btn btn-primary">Submit</button>
-
-
 </form>
+
+@section Scripts {
+    <script src="~/js/recipe-form.js"></script>
+}
 
