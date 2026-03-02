@@ -5,9 +5,14 @@ namespace RecipeForm.Controllers
     public class RecipeController : Controller
     {
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Submit()
+        {
+            return RedirectToAction("Index");
         }
     }
 }
