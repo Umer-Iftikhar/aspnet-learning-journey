@@ -126,4 +126,8 @@
 * **Building HTML from JSON in JS:** When API returns JSON, JavaScript must manually construct HTML using template literals and forEach — unlike MVC approach where server sends ready-made HTML.
 * **Stale DOM References:** Storing querySelector results in variables outside event listeners causes null errors when another operation replaces that DOM element — always re-query inside the handler when content can be replaced dynamically.
 
+* **DOM Cloning with cloneNode(true):** Used cloneNode(true) to deep-copy existing HTML elements (including all children) to dynamically add new form fields — avoids building elements from scratch with createElement and keeps markup consistent.
+* **Event Delegation for Dynamic Elements:** Event listeners added to static parent elements (e.g., #ingredientList) catch events from dynamically added children — directly adding listeners to cloned elements fails because they don't exist at DOMContentLoaded.
+* **Index-based Model Binding for Lists:** ASP.NET Core binds multiple inputs to List<string> using sequential name attributes (Ingredients[0], Ingredients[1]...) — gaps in the sequence break binding, requiring a reindexing function after every add/remove operation.
+
 ----

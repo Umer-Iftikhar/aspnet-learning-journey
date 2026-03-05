@@ -13,7 +13,7 @@ namespace RecipeForm.Controllers
         [HttpPost]
         public async Task<IActionResult> Submit(Recipe recipe)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View("Index", recipe);
             }

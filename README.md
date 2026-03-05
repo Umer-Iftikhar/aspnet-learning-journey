@@ -31,10 +31,14 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 5.2: Live Search
   -  [✅] Project 5.2: Live Search (Part A MVC)
   -  [✅] Project 5.2: Live Search (Part B minimal API)
-- [ ] Project 5.3: Dynamic Form Fields
+- [✅] Project 5.3: Dynamic Form Fields
+
+### PHASE 6: Authentication + Authorization (In Progress)
+- [ ] Project 6.1: User Registration + Login
+- [ ] Project 6.2: Blog with Authors
+- [ ] Project 6.3: Role-Based Bookstore
 
 ### Upcoming Phases
-- [ ] Phase 6: Authentication + Authorization
 - [ ] Phase 7: Validation + Error Handling
 - [ ] Phase 8: Project: Indie Game Discovery Platform
 - [ ] Phase 9: Production Patterns (MANDATORY)
@@ -45,8 +49,8 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 ----
 
 ## Current Phase
-**Phase:** 5 — JavaScript + DOM Manipulation
-**Current Project:** Project 5.3: Dynamic Form Fields (up next)
+**Phase:** 6 — Authentication + Authorization
+**Current Project:** Project 6.1 — User Registration + Login
 
 
 ## 📂 Quick Links
@@ -54,8 +58,8 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * 📔 [**Key Lessons Learned**](./docs/Lessons.md) 
 
 ## 📊 Stats
-- **Total Projects Completed:** 14 mini-projects
+- **Total Projects Completed:** 15 mini-projects
 - **LINQ Exercises Completed:** 8/8 
 - **SQL Exercise Completed:** 9/9 
-- **Phases Completed:** 4/12
-- **Current Focus:** JavaScript + DOM Manipulation
+- **Phases Completed:** 5/12
+- **Current Focus:** Authentication + Authorization
