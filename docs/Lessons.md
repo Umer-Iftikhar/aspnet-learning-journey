@@ -131,3 +131,12 @@
 * **Index-based Model Binding for Lists:** ASP.NET Core binds multiple inputs to List<string> using sequential name attributes (Ingredients[0], Ingredients[1]...) — gaps in the sequence break binding, requiring a reindexing function after every add/remove operation.
 
 ----
+
+### Phase 6.1: Authentication Fundamentals
+* **Cookie-based Auth vs. JWT:** Learned that MVC apps typically use Cookies to maintain sessions (server-side state), while JWT (JSON Web Tokens) are stateless and preferred for APIs where the client (like a mobile app) must send the token in every request header.
+* **Password Hashing (PBKDF2):** Identity does not store passwords as plain text; it uses the PBKDF2 algorithm to hash them. Even if the database is compromised, the attacker only sees a "salted" hash, which is computationally expensive to reverse.
+* **UserManager vs. SignInManager:** * UserManager<TUser>: Handles the "CRUD" and logic of users—creating accounts, checking passwords, and managing roles.
+* **SignInManager<TUser>:** Handles the actual "sign-in" flow—issuing cookies, checking for 2-factor authentication, and managing the user's session state.
+* **The [Authorize] Attribute:** Discovered this declarative security attribute that can be applied to Controllers or Actions. If an unauthenticated user tries to access these, Identity automatically intercepts the request and redirects them to the login page.
+* **IdentityDbContext:** Learned to extend IdentityDbContext rather than the standard DbContext. This specialized class includes all the pre-configured DbSet tables required for users, roles, and claims, ensuring your application tables and security tables live in the same database.
+* **The ReturnUrl Pattern:** Observed how Identity appends a ReturnUrl query parameter to the login link (e.g., /Login?ReturnUrl=/Products/Create). After a successful login, the app uses this to redirect the user back to where they were originally trying to go, improving the UX.

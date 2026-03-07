@@ -34,7 +34,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 5.3: Dynamic Form Fields
 
 ### PHASE 6: Authentication + Authorization (In Progress)
-- [ ] Project 6.1: User Registration + Login
+- [✅] Project 6.1: User Registration + Login
 - [ ] Project 6.2: Blog with Authors
 - [ ] Project 6.3: Role-Based Bookstore
 
@@ -50,7 +50,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ## Current Phase
 **Phase:** 6 — Authentication + Authorization
-**Current Project:** Project 6.1 — User Registration + Login
+**Current Project:** Project 6.2 — Blog with Authors
 
 
 ## 📂 Quick Links
@@ -58,7 +58,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * 📔 [**Key Lessons Learned**](./docs/Lessons.md) 
 
 ## 📊 Stats
-- **Total Projects Completed:** 15 mini-projects
+- **Total Projects Completed:** 16 mini-projects
 - **LINQ Exercises Completed:** 8/8 
 - **SQL Exercise Completed:** 9/9 
 - **Phases Completed:** 5/12
