@@ -2,6 +2,7 @@
 using AuthSystem.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AuthSystem.Controllers
 {
@@ -81,6 +82,16 @@ namespace AuthSystem.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
+
+        [Authorize]
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+        //public IActionResult DashBoard()
+        //{
+        //    return Content("hello");
+        //}
     }
 }
 
