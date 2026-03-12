@@ -1,0 +1,18 @@
+﻿@model BlogApp.ViewModels.PostFormViewModel
+@{
+    ViewData["Title"] = "Create New Posts";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <input type="text" name="Title" placeholder="Post title..." />
+    </div>
+    <div>
+        <textarea name="Content" placeholder="Post content..."></textarea>
+    </div>
+    <div>
+            <input type="text" name="AuthorName" placeholder="Author name..." />
+    </div>
+    <button type="submit">Create Post</button>
+</form>
