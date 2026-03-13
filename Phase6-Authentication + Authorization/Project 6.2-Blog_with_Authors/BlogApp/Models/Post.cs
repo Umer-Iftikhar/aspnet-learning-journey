@@ -8,6 +8,9 @@
             public string Content { get; set; } = string.Empty;
             public DateTime CreatedDate { get; set; }
             public string AuthorName { get; set; } = string.Empty;
-        }
+
+            public string? AuthorId { get; set; }
+            public ApplicationUser? Author { get; set; }    
+    }
     }
 
