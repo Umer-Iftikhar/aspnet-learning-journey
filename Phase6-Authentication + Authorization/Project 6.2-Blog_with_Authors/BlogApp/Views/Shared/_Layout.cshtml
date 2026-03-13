@@ -29,6 +29,19 @@
                     </ul>
                 </div>
             </div>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <div class="Logout-btn">
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn btn-link nav-link text-dark">Logout</button>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login">Login</a>
+                <a asp-controller="Account" asp-action="Register">Register</a>
+            }
         </nav>
     </header>
     <div class="container">
