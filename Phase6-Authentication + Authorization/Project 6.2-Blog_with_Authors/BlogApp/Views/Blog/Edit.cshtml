@@ -11,12 +11,10 @@
     </div>
         <div>
             <textarea name="Content" placeholder="Post content...">@Model.Content</textarea>
-            </div>
-            <div>
-                <input type="text" name="AuthorName" value="@Model.AuthorName" placeholder="Author name..." />
-                </div>
-                <button type="submit">Update Post</button>
-                </form>
-                <a asp-action="Index">Back to Blogs List</a>
-                <a asp-action="Details" asp-route-id="@Model.Id">Back to Post Details</a>
+        </div>
+            
+    <button type="submit">Update Post</button>
+    </form>
+    <a asp-action="Index">Back to Blogs List</a>
+    <a asp-action="Details" asp-route-id="@Model.Id">Back to Post Details</a>
            

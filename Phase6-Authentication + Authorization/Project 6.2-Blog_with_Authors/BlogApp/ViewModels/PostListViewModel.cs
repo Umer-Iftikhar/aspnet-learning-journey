@@ -7,5 +7,6 @@
         public string ContentPreview { get; set; } = string.Empty;
         public string AuthorName { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; }
+        public string? AuthorId { get; set; }
     }
 }

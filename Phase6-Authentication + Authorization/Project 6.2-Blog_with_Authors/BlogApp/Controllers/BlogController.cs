@@ -3,6 +3,8 @@ using BlogApp.Models;
 using BlogApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace BlogApp.Controllers
 {
@@ -41,7 +43,8 @@ namespace BlogApp.Controllers
                     Title = p.Title,
                     ContentPreview = p.Content.Length > 100 ? p.Content.Substring(0, 100) + "...." : p.Content,
                     AuthorName = p.AuthorName,
-                    CreatedDate = p.CreatedDate
+                    CreatedDate = p.CreatedDate,
+                    AuthorId = p.AuthorId
                 }
                 ).ToList(),
                 SearchQuery = searchQuery ?? string.Empty,
@@ -49,10 +52,12 @@ namespace BlogApp.Controllers
             };
             return View(viewModel);
         }
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(PostFormViewModel vmodel)
         {
@@ -60,7 +65,16 @@ namespace BlogApp.Controllers
             {
                 return View(vmodel);
             }
-            var newPost = new Post { AuthorName = vmodel.AuthorName, Content = vmodel.Content, Title = vmodel.Title, CreatedDate = DateTime.UtcNow };
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            var newPost = new Post { 
+                AuthorId = userId,
+                AuthorName = User.Identity?.Name ?? "Unknown",
+                Content = vmodel.Content, 
+                Title = vmodel.Title, 
+                CreatedDate = DateTime.UtcNow 
+            };
             _context.Posts.Add(newPost);
             await _context.SaveChangesAsync();
             
@@ -84,7 +98,14 @@ namespace BlogApp.Controllers
             {
                 return NotFound();
             }
-            var editViewModel = new PostFormViewModel { Id = editPost.Id, Title = editPost.Title, Content = editPost.Content, AuthorName = editPost.AuthorName };
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (editPost.AuthorId != userId)
+            {
+                return Forbid();
+            }
+
+            var editViewModel = new PostFormViewModel { Id = editPost.Id, Title = editPost.Title, Content = editPost.Content };
             return View(editViewModel);
         }
         [HttpPost]
@@ -99,9 +120,13 @@ namespace BlogApp.Controllers
             {
                 return NotFound();
             }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (editPost.AuthorId != userId)
+            {
+                return Forbid();
+            }
             editPost.Title = viewModel.Title;
             editPost.Content = viewModel.Content;
-            editPost.AuthorName = viewModel.AuthorName;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -113,6 +138,11 @@ namespace BlogApp.Controllers
             if(deletePost == null)
             {
                 return NotFound();
+            }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (deletePost.AuthorId != userId)
+            {
+                return Forbid();
             }
             _context.Posts.Remove(deletePost);
             await _context.SaveChangesAsync();
