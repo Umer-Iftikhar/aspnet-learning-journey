@@ -140,3 +140,9 @@
 * **The [Authorize] Attribute:** Discovered this declarative security attribute that can be applied to Controllers or Actions. If an unauthenticated user tries to access these, Identity automatically intercepts the request and redirects them to the login page.
 * **IdentityDbContext:** Learned to extend IdentityDbContext rather than the standard DbContext. This specialized class includes all the pre-configured DbSet tables required for users, roles, and claims, ensuring your application tables and security tables live in the same database.
 * **The ReturnUrl Pattern:** Observed how Identity appends a ReturnUrl query parameter to the login link (e.g., /Login?ReturnUrl=/Products/Create). After a successful login, the app uses this to redirect the user back to where they were originally trying to go, improving the UX.
+
+
+* **Ownership-based Authorization:** [Authorize] only checks if you're logged in — checking which user owns a resource requires manual comparison of AuthorId vs `User.FindFirstValue(ClaimTypes.NameIdentifier)` in the controller.
+* **Claims:** When you log in, Identity stores key-value pairs (claims) in your cookie. `ClaimTypes.NameIdentifier` is the claim that holds your unique user ID (GUID from AspNetUsers).
+* **Forbid() vs NotFound():** Forbid() returns 403 — "you're logged in but not allowed." NotFound() returns 404 — "resource doesn't exist." Use the right one for honest HTTP semantics.
+* **AccessDenied default path:** Forbid() automatically redirects to /Account/AccessDenied — this default is baked into CookieAuthenticationOptions and can be overridden in Program.cs.

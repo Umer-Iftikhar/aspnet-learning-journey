@@ -35,7 +35,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ### PHASE 6: Authentication + Authorization (In Progress)
 - [✅] Project 6.1: User Registration + Login
-- [ ] Project 6.2: Blog with Authors
+- [✅] Project 6.2: Blog with Authors
 - [ ] Project 6.3: Role-Based Bookstore
 
 ### Upcoming Phases
@@ -50,7 +50,8 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ## Current Phase
 **Phase:** 6 — Authentication + Authorization
-**Current Project:** Project 6.2 — Blog with Authors
+
+**Current Project:** Project 6.3 — Role-Based Bookstore
 
 
 ## 📂 Quick Links
@@ -58,7 +59,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * 📔 [**Key Lessons Learned**](./docs/Lessons.md) 
 
 ## 📊 Stats
-- **Total Projects Completed:** 16 mini-projects
+- **Total Projects Completed:** 17 mini-projects
 - **LINQ Exercises Completed:** 8/8 
 - **SQL Exercise Completed:** 9/9 
 - **Phases Completed:** 5/12
