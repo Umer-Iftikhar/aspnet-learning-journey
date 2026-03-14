@@ -132,7 +132,7 @@
 
 ----
 
-### Phase 6.1: Authentication Fundamentals
+### Phase 6: Authentication and Authorization
 * **Cookie-based Auth vs. JWT:** Learned that MVC apps typically use Cookies to maintain sessions (server-side state), while JWT (JSON Web Tokens) are stateless and preferred for APIs where the client (like a mobile app) must send the token in every request header.
 * **Password Hashing (PBKDF2):** Identity does not store passwords as plain text; it uses the PBKDF2 algorithm to hash them. Even if the database is compromised, the attacker only sees a "salted" hash, which is computationally expensive to reverse.
 * **UserManager vs. SignInManager:** * UserManager<TUser>: Handles the "CRUD" and logic of users—creating accounts, checking passwords, and managing roles.
