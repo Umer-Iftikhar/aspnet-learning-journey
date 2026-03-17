@@ -15,7 +15,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 2.3: Login System (Memory-based)
 
 ### PHASE 3: CSS + Layouts 
-- [✅] Project 3.1: Style Your Book Library 
+- [✅] Project 3.1: Styling my Book Library 
 - [✅] Project 3.2: Dashboard with Cards
 
 ### PHASE 4: SQL + Entity Framework Core 
@@ -33,7 +33,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
   -  [✅] Project 5.2: Live Search (Part B minimal API)
 - [✅] Project 5.3: Dynamic Form Fields
 
-### PHASE 6: Authentication + Authorization (In Progress)
+### PHASE 6: Authentication + Authorization 
 - [✅] Project 6.1: User Registration + Login
 - [✅] Project 6.2: Blog with Authors
 - [✅] Project 6.3: Role-Based Bookstore
