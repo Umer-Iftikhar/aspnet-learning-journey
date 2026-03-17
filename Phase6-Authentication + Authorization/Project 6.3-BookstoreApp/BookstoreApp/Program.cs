@@ -27,6 +27,33 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 
 var app = builder.Build();
 
+using var scope = app.Services.CreateScope();
+var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+if (!await roleManager.RoleExistsAsync("Admin"))
+{
+    await roleManager.CreateAsync(new IdentityRole("Admin"));
+}
+var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+var adminUser = await userManager.FindByEmailAsync("admin123@gmail.com");
+
+if (adminUser == null)
+{
+    var newAdmin = new ApplicationUser
+    {
+        UserName = "admin123@gmail.com",
+        Email = "admin123@gmail.com"
+    };
+    var result = await userManager.CreateAsync(newAdmin, "Admin@123");
+    if (result.Succeeded)
+    {
+        await userManager.AddToRoleAsync(newAdmin, "Admin");
+    }
+}
+
+
+
+
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
