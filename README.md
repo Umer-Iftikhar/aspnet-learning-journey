@@ -26,7 +26,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 4.3: Product Inventory
 - [✅] SQL Practice Block (Day 1-2, 4-5 hours total)
 
-### PHASE 5: JavaScript + DOM Manipulation (In Progress)
+### PHASE 5: JavaScript + DOM Manipulation 
 - [✅] Project 5.1: Client-Side Todo Toggle
 - [✅] Project 5.2: Live Search
   -  [✅] Project 5.2: Live Search (Part A MVC)
@@ -36,10 +36,14 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 ### PHASE 6: Authentication + Authorization (In Progress)
 - [✅] Project 6.1: User Registration + Login
 - [✅] Project 6.2: Blog with Authors
-- [ ] Project 6.3: Role-Based Bookstore
+- [✅] Project 6.3: Role-Based Bookstore
+
+### Phase 7: Validation + Error Handling (in progress)
+- [ ] Project 7.1: Enhanced Product Management
+- [ ] Project 7.2: Contact Form with Async Validation
+- [ ] Project 7.3: Global Error Handling
 
 ### Upcoming Phases
-- [ ] Phase 7: Validation + Error Handling
 - [ ] Phase 8: Project: Indie Game Discovery Platform
 - [ ] Phase 9: Production Patterns (MANDATORY)
 - [ ] Phase 10: WEB API: Convert Capstone to REST API
@@ -49,9 +53,9 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 ----
 
 ## Current Phase
-**Phase:** 6 — Authentication + Authorization
+**Phase:** 7 — Validation + Error Handling
 
-**Current Project:** Project 6.3 — Role-Based Bookstore
+**Current Project:** Project 7.1 — Enhanced Product Management
 
 
 ## 📂 Quick Links
@@ -59,8 +63,8 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * 📔 [**Key Lessons Learned**](./docs/Lessons.md) 
 
 ## 📊 Stats
-- **Total Projects Completed:** 17 mini-projects
+- **Total Projects Completed:** 18 mini-projects (+ 2 supporting exercises)
 - **LINQ Exercises Completed:** 8/8 
 - **SQL Exercise Completed:** 9/9 
-- **Phases Completed:** 5/12
-- **Current Focus:** Authentication + Authorization
+- **Phases Completed:** 6/12
+- **Current Focus:** Validation + Error Handling
