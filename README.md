@@ -39,7 +39,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 6.3: Role-Based Bookstore
 
 ### Phase 7: Validation + Error Handling (in progress)
-- [ ] Project 7.1: Enhanced Product Management
+- [✅] Project 7.1: Enhanced Product Management
 - [ ] Project 7.2: Contact Form with Async Validation
 - [ ] Project 7.3: Global Error Handling
 
@@ -55,7 +55,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 ## Current Phase
 **Phase:** 7 — Validation + Error Handling
 
-**Current Project:** Project 7.1 — Enhanced Product Management
+**Current Project:** Project 7.2: Contact Form with Async Validation
 
 
 ## 📂 Quick Links
@@ -63,7 +63,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * 📔 [**Key Lessons Learned**](./docs/Lessons.md) 
 
 ## 📊 Stats
-- **Total Projects Completed:** 18 mini-projects (+ 2 supporting exercises)
+- **Total Projects Completed:** 19 mini-projects (+ 2 supporting exercises)
 - **LINQ Exercises Completed:** 8/8 
 - **SQL Exercise Completed:** 9/9 
 - **Phases Completed:** 6/12

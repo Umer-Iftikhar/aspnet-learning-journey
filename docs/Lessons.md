@@ -152,3 +152,22 @@
 * **Conditional UI with `User.IsInRole()`:** Used this method inside Razor views to hide or show elements based on permissions. This prevents "UI clutter" by ensuring Customers never see "Edit" or "Delete" buttons that they aren't authorized to use, while still providing a seamless experience for Admins.
 * **Access Inheritance & `[AllowAnonymous]`:** Learned that security attributes follow a "most specific wins" rule. By placing `[Authorize(Roles = "Admin")]` at the Class level, every action is locked down by default. I then used `[AllowAnonymous]` on the `Index` or `Details` actions to explicitly "punch a hole" in that security, allowing the public to view products while keeping management tools private.
 * **UI Layout Integrity:** Discovered that hiding columns in a table for non-admins requires careful logic—if you hide a `<th>` in the header, you must also hide the corresponding `<td>` in the body to prevent the table rows from shifting and breaking the visual layout.
+
+#### Phase 7: Validation + Unit Testing
+
+* **Model Validation Pipeline:** Model Binding and Model Validation are two separate steps — binding maps HTTP data to C# objects, validation reads attributes via Reflection and populates ModelState. They happen sequentially, not simultaneously.
+* **Value Types and [Required]:** `[Required]` is meaningless on value types (int, decimal, bool) — they always have a default value (0) and can never be null. Only use `[Required]` on reference types like string.
+* **[DataType] is not Validation:** `[DataType(DataType.Currency)]` is a display hint for Razor — it affects how data renders in views, not whether it passes validation. Never confuse display attributes with validation attributes.
+* **Property-Level vs Class-Level Validation Order:** ASP.NET runs property-level validation ([Range], [Required]) before class-level validation (attributes on the class). If property-level validation fails, class-level attributes may never run — design validators with this order in mind.
+* **Custom Validation Attributes**: Inherit from `ValidationAttribute` and override protected `ValidationResult? IsValid(object? value, ValidationContext context)`. Return ValidationResult.Success! for valid, new ValidationResult("message") for invalid.
+* **ValidationContext.ObjectInstance:** Inside a custom attribute, `context.ObjectInstance` gives access to the entire model object — enabling cross-property validation that single-property attributes cannot achieve.
+* **as vs Hard Cast:** `context.ObjectInstance` as Product returns null if cast fails (safe). `(Product)context.ObjectInstance` throws InvalidCastException if cast fails (unsafe). Prefer as in validation code.
+* **Null-Forgiving Operator !:** ValidationResult.Success! tells the compiler `"I know this looks nullable, trust me."` Used when you're certain a value won't be null at runtime but the compiler can't prove it statically.
+* **asp-validation-summary="ModelOnly":** Displays only model-level `(class-level)` validation errors in the summary div. Use ModelOnly with asp-validation-for on fields to avoid showing errors twice.
+
+* **Unit Testing with xUnit:** `[Fact]` marks a single test that runs once. `[Theory]` with `[InlineData]` runs the same test multiple times with different inputs — mapped by position to method parameters.
+* **AAA Pattern:** Every unit test follows `Arrange` (set up data) → `Act` (do the thing) → `Assert` (verify result). One test should prove one thing only.
+* **ValidateModel Helper:** Manual validation in tests uses `Validator.TryValidateObject(model, context, results, true)` — the true parameter means validate all properties, not just the first failure.
+* **IList<T> vs List<T>:** IList<T> is the `interface`, List<T> is the concrete implementation. Program to interfaces when possible — more flexible and future-proof.
+* **Red-Green-Refactor:** Write a failing test first `(Red)`, write minimum code to pass it `(Green)`, then clean up `(Refactor)`. Writing tests before features forces you to think about expected behavior upfront.
+* **Test Failure Messages:** `xUnit` failure messages show exactly what failed, what the collection contained, and which line failed — eliminating the need for manual browser testing to diagnose issues.
