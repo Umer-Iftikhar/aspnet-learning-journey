@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../Enhanced_Product_Management.Tests/Enhanced_Product_Management.Tests.csproj" Id="5efd2775-14fc-47e7-9602-e66c3aadcfbb" />
   <Project Path="Enhanced Product Management.csproj" />
 </Solution>

@@ -1,5 +1,7 @@
 ﻿using Enhanced_Product_Management.Models;
 using System.ComponentModel.DataAnnotations;
+
+
 namespace Enhanced_Product_Management.Validations
 {
     public class PriceRequiredIfInStockAttribute : ValidationAttribute
