@@ -1,0 +1,19 @@
+﻿@model Enhanced_Product_Management.Models.Product
+
+@{
+    ViewData["Title"] = "Product Index";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<p>This is the empty product instance passed from the controller:</p>
+
+<ul>
+    <li>Name: @Model.Name</li>
+    <li>Price: @Model.Price</li>
+    <li>Stock: @Model.Stock</li>    
+</ul>
+
+<hr />
+
+<a asp-action="Create">Go to Create Form</a>

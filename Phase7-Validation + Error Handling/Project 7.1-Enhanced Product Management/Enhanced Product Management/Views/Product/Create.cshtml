@@ -1,0 +1,32 @@
+﻿
+@model Enhanced_Product_Management.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div>
+        <label asp-for="Price"></label>
+        <input asp-for="Price" />
+        <span asp-validation-for="Price"></span>
+    </div>
+
+    <div>
+        <label asp-for="Stock"></label>
+        <input asp-for="Stock" />
+        <span asp-validation-for="Stock"></span>
+    </div>
+
+    <button type="submit">Create</button>
+</form>
+
+<a asp-action="Index">Back to List</a>
