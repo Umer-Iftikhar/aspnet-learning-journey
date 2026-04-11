@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Contact_Form_with_Async_Validation</RootNamespace>
+    <UserSecretsId>e676cfa6-4c9a-459b-a56a-ddd4adbd01c5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

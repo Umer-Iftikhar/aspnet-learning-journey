@@ -5,7 +5,7 @@ namespace Contact_Form_with_Async_Validation.Models
 {
     public class ContactSubmission
     {
-        [
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -24,5 +24,6 @@ namespace Contact_Form_with_Async_Validation.Models
         [StringLength(1000, MinimumLength = 10)]
         public string? Message { get; set; }
 
-        public DateTime SubmittedAt { get; set; } 
+        public DateTime SubmittedAt { get; set; }
+    }
 }
