@@ -20,11 +20,11 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ### PHASE 4: SQL + Entity Framework Core 
 - [✅] Setup: MySQL + EF Core Tools
-- [✅] LINQ Deep Dive Practice (2 hours)
+- [✅] LINQ Deep Dive Practice 
 - [✅] Project 4.1: Todo App with Database
 - [✅] Project 4.2: Blog Posts
 - [✅] Project 4.3: Product Inventory
-- [✅] SQL Practice Block (Day 1-2, 4-5 hours total)
+- [✅] SQL Practice Block 
 
 ### PHASE 5: JavaScript + DOM Manipulation 
 - [✅] Project 5.1: Client-Side Todo Toggle
@@ -40,7 +40,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ### Phase 7: Validation + Error Handling (in progress)
 - [✅] Project 7.1: Enhanced Product Management
-- [ ] Project 7.2: Contact Form with Async Validation
+- [✅] Project 7.2: Contact Form with Async Validation
 - [ ] Project 7.3: Global Error Handling
 
 ### Upcoming Phases
@@ -55,7 +55,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 ## Current Phase
 **Phase:** 7 — Validation + Error Handling
 
-**Current Project:** Project 7.2: Contact Form with Async Validation
+**Current Project:** Project 7.3: Global Error Handling
 
 
 ## 📂 Quick Links
@@ -63,7 +63,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 * 📔 [**Key Lessons Learned**](./docs/Lessons.md) 
 
 ## 📊 Stats
-- **Total Projects Completed:** 19 mini-projects (+ 2 supporting exercises)
+- **Total Projects Completed:** 20 mini-projects (+ 2 supporting exercises)
 - **LINQ Exercises Completed:** 8/8 
 - **SQL Exercise Completed:** 9/9 
 - **Phases Completed:** 6/12

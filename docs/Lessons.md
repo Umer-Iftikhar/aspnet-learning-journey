@@ -171,3 +171,8 @@
 * **IList<T> vs List<T>:** IList<T> is the `interface`, List<T> is the concrete implementation. Program to interfaces when possible — more flexible and future-proof.
 * **Red-Green-Refactor:** Write a failing test first `(Red)`, write minimum code to pass it `(Green)`, then clean up `(Refactor)`. Writing tests before features forces you to think about expected behavior upfront.
 * **Test Failure Messages:** `xUnit` failure messages show exactly what failed, what the collection contained, and which line failed — eliminating the need for manual browser testing to diagnose issues.
+
+* **Remote Validation:** A `[Remote]` attribute on a model property triggers an AJAX call to a server action on blur/submit, which returns `Json(true)` or `Json("error message")` to validate without a full page reload.
+* **@section Scripts {}:** Ensures your scripts are injected into the layout's `@RenderSection("Scripts")` near </body>, guaranteeing `jQuery` is already loaded before your validation scripts run.
+* **User Secrets:** Used in Development only to store sensitive data outside the project folder (preventing git leaks); init with `dotnet user-secrets init`, add with `dotnet user-secrets set "Key" "Value"` in terminal.
+* **Server-side safety net:** Remote validation is purely client-side UX and can be bypassed via Postman, disabled JS, or race conditions, so it must always be re-checked with `ModelState.AddModelError(...)` in the POST action.
