@@ -153,7 +153,7 @@
 * **Access Inheritance & `[AllowAnonymous]`:** Learned that security attributes follow a "most specific wins" rule. By placing `[Authorize(Roles = "Admin")]` at the Class level, every action is locked down by default. I then used `[AllowAnonymous]` on the `Index` or `Details` actions to explicitly "punch a hole" in that security, allowing the public to view products while keeping management tools private.
 * **UI Layout Integrity:** Discovered that hiding columns in a table for non-admins requires careful logic—if you hide a `<th>` in the header, you must also hide the corresponding `<td>` in the body to prevent the table rows from shifting and breaking the visual layout.
 
-#### Phase 7: Validation + Unit Testing
+### Phase 7: Validation + Unit Testing
 
 * **Model Validation Pipeline:** Model Binding and Model Validation are two separate steps — binding maps HTTP data to C# objects, validation reads attributes via Reflection and populates ModelState. They happen sequentially, not simultaneously.
 * **Value Types and [Required]:** `[Required]` is meaningless on value types (int, decimal, bool) — they always have a default value (0) and can never be null. Only use `[Required]` on reference types like string.
@@ -176,3 +176,12 @@
 * **@section Scripts {}:** Ensures your scripts are injected into the layout's `@RenderSection("Scripts")` near </body>, guaranteeing `jQuery` is already loaded before your validation scripts run.
 * **User Secrets:** Used in Development only to store sensitive data outside the project folder (preventing git leaks); init with `dotnet user-secrets init`, add with `dotnet user-secrets set "Key" "Value"` in terminal.
 * **Server-side safety net:** Remote validation is purely client-side UX and can be bypassed via Postman, disabled JS, or race conditions, so it must always be re-checked with `ModelState.AddModelError(...)` in the POST action.
+
+#### Middlewares:
+* **Custom Middleware Structure:** A custom middleware is a class that processes HTTP requests/responses in the pipeline; its constructor takes `RequestDelegate next`, and `InvokeAsync` typically wraps `await _next(context)` in a try-catch for error handling.
+* **Middleware Pipeline Order:** Exception-handling middleware must be registered first (e.g., `app.UseExceptionHandler`) so it can catch exceptions thrown by all middleware and endpoints registered after it in the pipeline.
+* **Middleware vs Controller try-catch:** Middleware provides global exception handling across the entire request pipeline (including non-controller code), while controller `try-catch` is local and only catches exceptions within action methods.
+* **HasStarted check:** Always check if `(!context.Response.HasStarted)` before modifying/redirecting the response in middleware to avoid "Cannot set headers after they have been sent" errors.
+* **404 vs Exceptions:** A 404 status is a normal response (not an exception), so it requires separate handling like `app.UseStatusCodePagesWithReExecute` to re-execute for custom error pages.
+* **.http files:** `.http files` (in Visual Studio/Rider) allow direct HTTP request testing with raw responses and status codes; browsers often interfere by auto-following redirects or hiding certain status codes.
+* **Linked list analogy:** The middleware pipeline acts like a linked list where each middleware holds a `_next pointer` to the subsequent one; the request flows forward through the chain, and the response flows back on the return path.
