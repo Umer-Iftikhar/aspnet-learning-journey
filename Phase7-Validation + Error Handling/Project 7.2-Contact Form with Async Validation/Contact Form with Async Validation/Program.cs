@@ -1,4 +1,5 @@
 using Contact_Form_with_Async_Validation.Data;
+using Contact_Form_with_Async_Validation.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,10 +17,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
+app.UseMiddleware<GlobalExceptionMiddleware>();
+
+
+app.UseStatusCodePagesWithReExecute("/Home/Error404");
+
 app.UseRouting();
 
 app.UseAuthorization();

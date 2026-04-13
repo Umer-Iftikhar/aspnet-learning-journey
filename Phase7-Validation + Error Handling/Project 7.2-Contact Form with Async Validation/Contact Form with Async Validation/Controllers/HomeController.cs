@@ -28,5 +28,10 @@ namespace Contact_Form_with_Async_Validation.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Error404()
+        {
+            return View();
+        }
     }
 }
