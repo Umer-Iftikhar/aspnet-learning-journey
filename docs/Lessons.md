@@ -185,3 +185,98 @@
 * **404 vs Exceptions:** A 404 status is a normal response (not an exception), so it requires separate handling like `app.UseStatusCodePagesWithReExecute` to re-execute for custom error pages.
 * **.http files:** `.http files` (in Visual Studio/Rider) allow direct HTTP request testing with raw responses and status codes; browsers often interfere by auto-following redirects or hiding certain status codes.
 * **Linked list analogy:** The middleware pipeline acts like a linked list where each middleware holds a `_next pointer` to the subsequent one; the request flows forward through the chain, and the response flows back on the return path.
+
+### Phase 8: Database Seeding
+
+#### Database Seeding:
+* **Dependency Order in Seeding:** Seed lookup tables first (no FKs), then users, then entities that depend on both — violating this order causes FK constraint exceptions.
+* **using var for Scopes:** Disposable resources like IServiceDisposable scopes should always use using var — guarantees cleanup via finally even if an exception is thrown mid-execution.
+* **GetRequiredService vs GetService:** GetRequiredService throws immediately if a service isn't registered — prefer it when your code cannot function without that dependency. Fail loudly and early.
+* **UserManager and RoleManager over raw DbContext:** Identity managers automatically set normalized fields (NormalizedName, NormalizedEmail, SecurityStamp) required for login and role-based authorization to work — raw DbContext inserts skip this and silently break authentication.
+* **Bogus Faker<T>:** Use .RuleFor(u => u.Property, f => f.Category.Method()) to generate realistic fake data. f.PickRandom(list) picks a random item, f.PickRandom(list, count) picks a distinct subset.
+* **Single SaveChangesAsync outside loops:** Calling SaveChangesAsync inside a loop hits the database once per iteration — build the entire list first, then save once.
+* **Math.Min safety cap:** When using PickRandom(list, count), always cap count with Math.Min(count, list.Count) — requesting more items than the list contains throws an exception.
+* **Tuple return for multiple lists:** When a seed method needs to return two related lists, use a tuple (List<T1>, List<T2>) instead of creating a separate result class.
+* **Silent CreateAsync failures:** UserManager.CreateAsync returns IdentityResult — always check result.Succeeded and log result.Errors during development, otherwise failures are invisible and downstream lists stay empty.
+
+#### Authentication section:
+* **UserManager vs SignInManager:** Managing user records (UserManager) and managing sessions (SignInManager).
+* **PasswordSignInAsync two-step with email:**  When logging in via email, you must first FindByEmailAsync() to get the user, then pass user.UserName to PasswordSignInAsync — Identity's sign-in method works with usernames, not emails by default.
+**IsSignedIn(User):** User is the ClaimsPrincipal built into every controller. Used to guard GET actions from already-authenticated users.
+* **Identity Password Policy Configuration:** options.Password.* properties in AddIdentity lambda control complexity rules. These are enforced server-side by Identity, separate from ViewModel annotations — don't duplicate with regex.
+* **RequireUniqueEmail:** Not enforced by default. Must explicitly set options.User.RequireUniqueEmail = true and ensure a unique index exists on NormalizedEmail in the database.
+* **AllowedUserNameCharacters:** Identity restricts username characters by default. Setting string.Empty disables the restriction entirely.
+* **Lockout configuration:** options.Lockout.MaxFailedAccessAttempts and DefaultLockoutTimeSpan configure account lockout. Only activates when lockoutOnFailure: true is passed to PasswordSignInAsync.
+* **Unique index vs unique constraint:** A non-unique index (Non_unique = 1) doesn't prevent duplicates. Always verify with SHOW INDEX FROM table that critical columns have Non_unique = 0.
+* **Data cleanup before migrations:** Adding a unique constraint to a column with existing duplicates fails at Update-Database. Always clean duplicate data before running such migrations.
+
+#### Game Management
+
+##### Schema & Constraints:
+* **EF Core Schema Ownership:** EF Core is the single source of truth for your database schema. Manual constraints added directly in MySQL Workbench are fragile — the next migration can overwrite them. Always define constraints through Fluent API or model configuration so migrations stay consistent with the actual schema.
+* **RequireUniqueEmail is not default:** Identity does not enforce unique emails out of the box. Must explicitly set options.User.RequireUniqueEmail = true in AddIdentity configuration — without it, duplicate emails are silently allowed.
+* **Unique constraints need Fluent API:** EF Core does not automatically generate unique constraints from model properties alone. Must explicitly call builder.HasIndex(e => e.Property).IsUnique() in OnModelCreating — otherwise the migration generates a non-unique index that doesn't prevent duplicates.
+* **IsRequired() vs IsUnique():** IsRequired() translates to NOT NULL on the column. IsUnique() creates a separate UNIQUE KEY B-Tree index — two different database objects enforcing two different things.
+
+##### Indexes & B-Trees:
+* **UNIQUE KEY is a B-Tree index:** A unique constraint in MySQL doesn't just enforce uniqueness — it creates a B-Tree index that serves two jobs simultaneously. Job 1: on every INSERT/UPDATE, MySQL traverses the B-Tree in O(log n) to verify no duplicate exists. Job 2: on SELECT queries, the same B-Tree accelerates lookups instead of doing a full table scan.
+* **PRIMARY KEY vs UNIQUE KEY:** Both are unique B-Tree indexes under the hood. The difference is nullability — PRIMARY KEY enforces NOT NULL and there can only be one per table. UNIQUE KEY allows NULL values, and multiple NULL entries don't violate the constraint because NULL means unknown and two unknowns are never considered equal.
+
+##### File Upload:
+* **IFormFile:** When an HTML file input is submitted, ASP.NET Core maps it to IFormFile — an interface in Microsoft.AspNetCore.Http with properties FileName, Length, ContentType and method CopyToAsync() to read the raw bytes.
+* **IWebHostEnvironment:** Injected via constructor to get the physical path to wwwroot on the server via _webHostEnvironment.WebRootPath. Combined with Path.Combine() to build full file paths safely.
+* **Image naming with primary key:** Use the game's database ID as the folder name — wwwroot/images/games/{gameId}/cover.jpg. Guarantees uniqueness without any collision checking logic. Screenshots naturally extend this: wwwroot/images/games/{gameId}/screenshot_1.jpg.
+* **Two-step insert for image path:** EF Core generates the primary key on INSERT — creating a chicken-and-egg problem when the image path depends on the ID. Solution: insert the game record first with a placeholder path, retrieve the generated ID, save the image to the correct folder, then update the record with the real path.
+* **enctype="multipart/form-data" :** it is mandatory on forms that upload files — without it, file inputs arrive as null at the controller.
+* **Directory.CreateDirectory():** is safe to call even if the folder exists — no need to check first, though defensive check is fine.
+* **Path.Replace("\\", "/"):** Path.Combine() uses OS-specific separators. Windows uses \ which breaks browser <img src=""> URLs. Always normalize to / for web paths.
+* **Browser cache busting:** same filename (cover.jpg) causes browsers to show old cached images. Append ?v=@DateTime.UtcNow.Ticks to force fresh fetch.
+
+##### Security Patterns:
+* **UI-level protection is not enough:** Hidingding buttons doesn't prevent direct URL access. Controllers must always verify ownership independently of what the UI shows.
+* **Two-step security check:** first FirstOrDefaultAsync(g => g.Id == id) → NotFound(), then ownership check → Forbid(). Splitting them gives honest HTTP semantics — 404 vs 403.
+
+##### EF Core Patterns:
+Two SaveChangesAsync() calls intentionally — first generates the primary key, second persists image paths that depend on that key.
+`.Clear()` on navigation collections + re-adding is the correct pattern for updating many-to-many relationships — EF Core tracks the deletions and insertions automatically.
+RemoveRange() for batch deletes — more efficient than looping Remove().
+
+##### Razor Patterns:
+Inside @if {} blocks you're already in C# context — no need for @{} again, just write C# directly.
+Pre-checking checkboxes requires .Contains() check on the selected list — Tag Helpers don't handle checkbox lists natively so name= attribute is used manually.
+SelectList(collection, "valueField", "displayField") converts entity lists to dropdown options.
+
+##### EF Core - Details/Read patterns:
+* **Include() is for navigation only:** Scalar fields (string, int, decimal) load automatically. .Include() is exclusively for properties that point to other model classes.
+* **ThenInclude() for nested navigation:** When a navigation property itself has navigation properties (e.g., GamePlatforms → Platform), chain .ThenInclude() to go one level deeper.
+* **Single query pattern:** FirstOrDefaultAsync() returns the entity OR null. One null check after the query replaces the wasteful Any() + separate fetch pattern.
+* **NullReferenceException from missing Include:** Forgetting .Include() leaves the navigation property as null. Accessing .Name on null crashes with a NullReferenceException — not a helpful EF Core error.
+
+##### Razor - Details view patterns:
+* **Bootstrap Icons vs Bootstrap CSS:** Two separate libraries. Bootstrap CSS handles layout/components, Bootstrap Icons handles the icon font. Need separate CDN imports for each.
+* **Conditional star rating:** Loop from 1-5, append -fill to the icon class only when i <= review.Rating. Unfilled stars show automatically for the remainder.
+* **Horizontal scroll gallery:** scroll-snap-type: x mandatory on the container + flex: 0 0 100% on each item = one screenshot visible at a time, snaps cleanly on scroll.
+* **DownloadLink null fallback:** Check if DownloadLink exists before rendering — show a real anchor tag if it does, a disabled "Coming Soon" button if it doesn't.
+* **Owner review guard:** Compare DeveloperId against the logged-in user's ID via ClaimTypes.NameIdentifier — prevents a developer reviewing their own game at the UI level.
+
+##### Dapper vs. EF Core
+Pick Dapper when you need absolute control over the SQL (e.g., CTEs, window functions, or specialized hints) and the lowest possible overhead for high-performance mapping that EF Core's abstraction layer bloats.
+
+##### DynamicParameters vs. Anonymous Objects
+DynamicParameters allows you to conditionally add parameters and reuse the same parameter collection across multiple distinct queries (like a data query and a count query), whereas an anonymous object is immutable and fixed.
+
+##### The Joining SQL Cost
+You are avoiding Network Latency and Connection Overhead; sending multiple SQL statements in one string means the application only pays the "travel time" to the database server once instead of twice.
+
+##### The @param IS NULL OR Logic
+If the genre is NULL, the condition short-circuits to TRUE (returning everything); if a genre is passed, it executes the filter—the tradeoff is a suboptimal execution plan because the DB tries to optimize for two different scenarios at once.
+Spot on. I’ll update the records—injecting a literal fragment into the string is much more "Dapper-style" than trying to force a complex OR logic into a static parameter.
+
+##### Dynamic SQL Fragments (The True Solution)
+Instead of relying on SQL-side null checks, the C# code conditionally builds the query string. If the platform list is empty, you inject 1=1 (always true); if it has values, you inject the actual EXISTS subquery. This prevents the "empty set" error and keeps the final SQL clean for the optimizer.
+
+##### SELECT 1 inside EXISTS
+EXISTS only cares about row presence (True/False); SELECT 1 is a performance convention that tells the engine to stop searching after the first match and avoids the overhead of fetching actual column data.
+
+##### The .ToString() Conversion
+You convert Enums or Guids to Strings to ensure the database receives the literal text value (e.g., "Action") rather than the underlying integer (e.g., 1), preventing type-mismatch errors or data corruption.
