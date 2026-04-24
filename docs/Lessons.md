@@ -202,7 +202,7 @@
 #### Authentication section:
 * **UserManager vs SignInManager:** Managing user records (UserManager) and managing sessions (SignInManager).
 * **PasswordSignInAsync two-step with email:**  When logging in via email, you must first FindByEmailAsync() to get the user, then pass user.UserName to PasswordSignInAsync — Identity's sign-in method works with usernames, not emails by default.
-**IsSignedIn(User):** User is the ClaimsPrincipal built into every controller. Used to guard GET actions from already-authenticated users.
+* **IsSignedIn(User):** User is the ClaimsPrincipal built into every controller. Used to guard GET actions from already-authenticated users.
 * **Identity Password Policy Configuration:** options.Password.* properties in AddIdentity lambda control complexity rules. These are enforced server-side by Identity, separate from ViewModel annotations — don't duplicate with regex.
 * **RequireUniqueEmail:** Not enforced by default. Must explicitly set options.User.RequireUniqueEmail = true and ensure a unique index exists on NormalizedEmail in the database.
 * **AllowedUserNameCharacters:** Identity restricts username characters by default. Setting string.Empty disables the restriction entirely.
@@ -280,3 +280,6 @@ EXISTS only cares about row presence (True/False); SELECT 1 is a performance con
 
 ##### The .ToString() Conversion
 You convert Enums or Guids to Strings to ensure the database receives the literal text value (e.g., "Action") rather than the underlying integer (e.g., 1), preventing type-mismatch errors or data corruption.
+
+##### _userManager.GetUserId(User)
+`_userManager.GetUserId(User)` returns the current user's GUID (string) directly from the cookie claims. No database call. `User.Identity.Name` returns the username, not the ID. Use GetUserId() whenever you need the `foreign key` for database operations.

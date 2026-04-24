@@ -64,4 +64,4 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - **LINQ Exercises Completed:** 8/8 
 - **SQL Exercise Completed:** 9/9 
 - **Phases Completed:** 7/12
-- **Current Focus:** Reviews for Games
+- **Current Focus:** Games Wishlist
