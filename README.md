@@ -43,7 +43,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 7.2: Contact Form with Async Validation
 - [✅] Project 7.3: Global Error Handling
 
-### Project
+### Project:
 - [✅] Phase 8: Project: Indie Game Discovery Platform
 
 ### Upcoming Phases
