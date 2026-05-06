@@ -38,13 +38,15 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - [✅] Project 6.2: Blog with Authors
 - [✅] Project 6.3: Role-Based Bookstore
 
-### Phase 7: Validation + Error Handling (in progress)
+### Phase 7: Validation + Error Handling 
 - [✅] Project 7.1: Enhanced Product Management
 - [✅] Project 7.2: Contact Form with Async Validation
 - [✅] Project 7.3: Global Error Handling
 
+### Project
+- [✅] Phase 8: Project: Indie Game Discovery Platform
+
 ### Upcoming Phases
-- [ ] Phase 8: Project: Indie Game Discovery Platform
 - [ ] Phase 9: Production Patterns (MANDATORY)
 - [ ] Phase 10: WEB API: Convert Capstone to REST API
 - [ ] Phase 11: Azure Deployment
@@ -52,7 +54,7 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 
 ----
 
-## Current Focus → Capstone - Indie Game Discovery Platform
+## Current Focus → Refactoring
 
 
 ## 📂 Quick Links
@@ -63,5 +65,5 @@ Learning full-stack web development with ASP.NET Core, Razor, EF Core, and vanil
 - **Total Projects Completed:** 21 mini-projects (+ 2 supporting exercises)
 - **LINQ Exercises Completed:** 8/8 
 - **SQL Exercise Completed:** 9/9 
-- **Phases Completed:** 7/12
-- **Current Focus:** Games Wishlist
+- **Phases Completed:** 8/12
+- **Current Focus:** Phase 9 start
